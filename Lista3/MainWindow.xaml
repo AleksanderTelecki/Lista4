@@ -46,8 +46,33 @@
                         <DataGridTextColumn Header="Pesel" Binding="{Binding Path=Pesel,Mode=TwoWay}" Width="110" />
                         <DataGridTextColumn Header="Numer Albumu" Binding="{Binding Path=NumerAlbumu,Mode=TwoWay}"  />
                     </DataGrid.Columns>
+                    <DataGrid.RowDetailsTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Border VerticalAlignment="Center"  Margin="2"  BorderBrush="Black" BorderThickness="2">
+                                    <Image Stretch="Fill" VerticalAlignment="Top" Source="{Binding PersonImage}" Height="100"/>
+                                </Border>
+                                <StackPanel Grid.Column="1" Margin="4">
+                                    <TextBlock Text="Data urodzenia"/>
+                                    <TextBox Background="LightGray" IsReadOnly="True" Text="{Binding DateOfBirth, StringFormat=d}"/>
+                                    <TextBlock Text="Miasto"/>
+                                    <TextBox Background="LightGray" IsReadOnly="True" Text="{Binding HomeCity}"/>
+                                    <TextBlock Text="Adres"/>
+                                    <TextBox Background="LightGray" IsReadOnly="True" Text="{Binding Adress}"/>
+                                    <TextBlock Text="ID"/>
+                                    <TextBox Background="LightGray" IsReadOnly="True" Text="{Binding ID}"/>
+                                </StackPanel>
 
-                   
+
+
+                            </Grid>
+                        </DataTemplate>
+                    </DataGrid.RowDetailsTemplate>
+
 
                 </DataGrid>
             </Border>
