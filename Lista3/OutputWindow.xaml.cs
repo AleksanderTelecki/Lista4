@@ -33,7 +33,19 @@ namespace Lista3
             textBoxes.Add(_NrAlbumu);
             textBoxes.Add(_Adress);
             _DataGrid.DataContext = MainWindow.Students[MainWindow.Index];
+            _Date.SelectedDateChanged += _Date_SelectedDateChanged;
             
+        }
+
+        private void _Date_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (_Date.SelectedDate!=null)
+            {
+
+                var Text = (DateTime.Today - _Date.SelectedDate).Value.Days.ToString();
+                _Age.Text = (int.Parse(Text) / 365).ToString();
+
+            }
         }
 
         private void _Save_Click(object sender, RoutedEventArgs e)

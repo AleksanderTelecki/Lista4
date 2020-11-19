@@ -36,6 +36,19 @@ namespace Lista3
             textBoxes.Add(_Pesel);
             textBoxes.Add(_Adress);
             textBoxes.Add(_NrAlbumu);
+            _Date.SelectedDateChanged += _Date_SelectedDateChanged;
+
+        }
+
+        private void _Date_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (_Date.SelectedDate!=null)
+            {
+
+
+                var Text = (DateTime.Today - _Date.SelectedDate).Value.Days.ToString();
+                _Age.Text = (int.Parse(Text) / 365).ToString();
+            }
 
         }
 
@@ -60,7 +73,7 @@ namespace Lista3
 
                 if (CheckText())
                 {
-
+                    MainWindow mainWindow = new MainWindow();
 
                     student.Name = _Name.Text;
                     student.SurName = _SurName.Text;
@@ -69,12 +82,13 @@ namespace Lista3
                     student.Age = int.Parse(_Age.Text);
                     student.Adress = _Adress.Text;
                     student.NumerAlbumu = _NrAlbumu.Text;
-                    student.DateOfBirth = _Date.SelectedDate.Value;
+                    student.DateOfBirth = (DateTime)_Date.SelectedDate;
                     student.SetId();
                     MainWindow.Students.Add(student);
+                    mainWindow.Refresh();
                     MessageBox.Show("Success!");
                     ClearFields();
-
+                    
 
                 }
             }

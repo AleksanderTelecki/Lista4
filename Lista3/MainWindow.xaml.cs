@@ -18,6 +18,8 @@ using Microsoft.Win32;
 using System.Runtime.InteropServices;
 using System.Windows.Media.Imaging;
 using System.Xml.Serialization;
+using System.Windows.Markup;
+using System.Globalization;
 
 namespace Lista3
 {
@@ -30,10 +32,8 @@ namespace Lista3
         public MainWindow()
         {
             InitializeComponent();
+            FrameworkElement.LanguageProperty.OverrideMetadata(typeof(FrameworkElement),new FrameworkPropertyMetadata(XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag)));
 
-            //Persons.Add(new Person("Zbigniew", "Szwecki", "sda2313asda", "Kraków", DateTime.Now, 19));
-            //Persons.Add(new Person("Adam", "Kowalski", "asdad12313","Opole",DateTime.Now,12));
-            //Persons.Add(new Person("Olek", "Telecki", "sda2313413da", "Rzeszów", DateTime.Now, 26));
 
             Data.ItemsSource = Students;
 
@@ -128,7 +128,16 @@ namespace Lista3
 
         }
 
-    
+        public void Refresh()
+        {
+
+            Data.ItemsSource = null;
+
+            Data.ItemsSource = Students;
+
+        }
+
+
 
         private void Data_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {

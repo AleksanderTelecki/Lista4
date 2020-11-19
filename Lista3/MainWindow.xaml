@@ -62,7 +62,7 @@
                                 </Border>
                                 <StackPanel Grid.Column="1" Margin="4">
                                     <TextBlock Text="Data urodzenia"/>
-                                    <TextBox Background="LightGray" IsReadOnly="True" Text="{Binding DateOfBirth, StringFormat=d}"/>
+                                    <TextBox Background="LightGray" IsReadOnly="True" Text="{Binding DateOfBirth,StringFormat='d'}"/>
                                     <TextBlock Text="Miasto"/>
                                     <TextBox Background="LightGray" IsReadOnly="True" Text="{Binding HomeCity}"/>
                                     <TextBlock Text="Adres"/>

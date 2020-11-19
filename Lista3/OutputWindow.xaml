@@ -52,10 +52,10 @@
                     <TextBlock  Text="Numer albumu"  />
                     <TextBox x:Name="_NrAlbumu" Text="{Binding NumerAlbumu,Mode=TwoWay}"/>
                     <TextBlock   Text="Wiek"/>
-                    <TextBox x:Name="_Age" Text="{Binding Age,Mode=TwoWay}"/>
+                    <TextBox Background="LightGray" IsReadOnly="True" x:Name="_Age" Text="{Binding Age,Mode=TwoWay}"/>
                
                 <TextBlock Text="Data Urodzenia"/>
-                <DatePicker Name="_Date" Text="{Binding DateOfBirth,Mode=TwoWay}"  />
+                <DatePicker Name="_Date" Text="{Binding DateOfBirth}"  />
                 <TextBlock  Text="Miasto"/>
                 <TextBox x:Name="_City" Text="{Binding HomeCity,Mode=TwoWay}"/>
                     <TextBlock Text="Adres"/>
