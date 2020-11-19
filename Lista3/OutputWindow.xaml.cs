@@ -30,7 +30,9 @@ namespace Lista3
             textBoxes.Add(_City);
             textBoxes.Add(_Age);
             textBoxes.Add(_Pesel);
-            _DataGrid.DataContext = MainWindow.Persons[MainWindow.Index];
+            textBoxes.Add(_NrAlbumu);
+            textBoxes.Add(_Adress);
+            _DataGrid.DataContext = MainWindow.Students[MainWindow.Index];
             
         }
 
@@ -45,13 +47,15 @@ namespace Lista3
                 {
 
 
-                    MainWindow.Persons[MainWindow.Index].Name = _Name.Text;
-                    MainWindow.Persons[MainWindow.Index].SurName = _SurName.Text;
-                    MainWindow.Persons[MainWindow.Index].HomeCity = _City.Text;
-                    MainWindow.Persons[MainWindow.Index].Pesel = _Pesel.Text;
-                    MainWindow.Persons[MainWindow.Index].Age = int.Parse(_Age.Text);
-                    MainWindow.Persons[MainWindow.Index].DateOfBirth = _Date.SelectedDate.Value;
-                    MessageBox.Show("Success!");
+                    MainWindow.Students[MainWindow.Index].Name = _Name.Text;
+                    MainWindow.Students[MainWindow.Index].SurName = _SurName.Text;
+                    MainWindow.Students[MainWindow.Index].HomeCity = _City.Text;
+                    MainWindow.Students[MainWindow.Index].Pesel = _Pesel.Text;
+                    MainWindow.Students[MainWindow.Index].Age = int.Parse(_Age.Text);
+                    MainWindow.Students[MainWindow.Index].DateOfBirth = _Date.SelectedDate.Value;
+                    MainWindow.Students[MainWindow.Index].Adress = _Adress.Text;
+                    MainWindow.Students[MainWindow.Index].NumerAlbumu = _NrAlbumu.Text;
+                  MessageBox.Show("Success!");
                 }
             }
             catch (Exception)
@@ -85,7 +89,9 @@ namespace Lista3
 
         private void _Delete_Click(object sender, RoutedEventArgs e)
         {
-
+            MainWindow.Students.Remove(MainWindow.Students[MainWindow.Index]);
+            MessageBox.Show("Success!");
+            this.Close();
         }
 
         private void _ChangeImage_Click(object sender, RoutedEventArgs e)
@@ -93,10 +99,10 @@ namespace Lista3
             OpenFileDialog saveFileDialog = new OpenFileDialog();
             if (saveFileDialog.ShowDialog() == true)
             {
-                MainWindow.Persons[MainWindow.Index].PersonStringImage = Person.ImgToStr(saveFileDialog.FileName);
+                MainWindow.Students[MainWindow.Index].PersonStringImage = Student.ImgToStr(saveFileDialog.FileName);
             }
 
-            _Image.Source = MainWindow.Persons[MainWindow.Index].PersonImage;
+            _Image.Source = MainWindow.Students[MainWindow.Index].PersonImage;
 
 
         }

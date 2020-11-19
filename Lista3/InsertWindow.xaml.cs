@@ -24,7 +24,7 @@ namespace Lista3
     {
 
 
-        Person person = new Person();
+        Student student = new Student();
         List<TextBox> textBoxes = new List<TextBox>();
         public InsertWindow()
         {
@@ -34,6 +34,8 @@ namespace Lista3
             textBoxes.Add(_City);
             textBoxes.Add(_Age);
             textBoxes.Add(_Pesel);
+            textBoxes.Add(_Adress);
+            textBoxes.Add(_NrAlbumu);
 
         }
 
@@ -42,8 +44,8 @@ namespace Lista3
             OpenFileDialog saveFileDialog = new OpenFileDialog();
             if (saveFileDialog.ShowDialog() == true)
             {
-                person.PersonStringImage = Person.ImgToStr(saveFileDialog.FileName);
-                ImageFrame.Source = person.PersonImage;  
+                student.PersonStringImage = Student.ImgToStr(saveFileDialog.FileName);
+                ImageFrame.Source = student.PersonImage;  
             }
 
         }
@@ -60,15 +62,20 @@ namespace Lista3
                 {
 
 
-                    person.Name = _Name.Text;
-                    person.SurName = _SurName.Text;
-                    person.HomeCity = _City.Text;
-                    person.Pesel = _Pesel.Text;
-                    person.Age = int.Parse(_Age.Text);
-                    person.DateOfBirth = _Date.SelectedDate.Value;
-                    person.SetId();
-                    MainWindow.Persons.Add(person);
+                    student.Name = _Name.Text;
+                    student.SurName = _SurName.Text;
+                    student.HomeCity = _City.Text;
+                    student.Pesel = _Pesel.Text;
+                    student.Age = int.Parse(_Age.Text);
+                    student.Adress = _Adress.Text;
+                    student.NumerAlbumu = _NrAlbumu.Text;
+                    student.DateOfBirth = _Date.SelectedDate.Value;
+                    student.SetId();
+                    MainWindow.Students.Add(student);
                     MessageBox.Show("Success!");
+                    ClearFields();
+
+
                 }
             }
             catch (Exception)
@@ -80,6 +87,18 @@ namespace Lista3
 
 
 
+        }
+
+
+        private void ClearFields()
+        {
+            foreach (var item in textBoxes)
+            {
+                item.Text = string.Empty;
+                
+            }
+            ImageFrame.Source = null;
+            _Date.SelectedDate = null;
         }
 
 

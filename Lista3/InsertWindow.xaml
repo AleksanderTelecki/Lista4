@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lista3"
         mc:Ignorable="d"
-        Title="InsertWindow" Height="450" Width="250">
+        Title="InsertWindow" Height="500" Width="250">
     <Border Margin="3" Background="AliceBlue" BorderBrush="Black" BorderThickness="2" CornerRadius="2">
     <StackPanel Margin="4">
             <StackPanel>
@@ -24,6 +24,11 @@
             </StackPanel>
 
             <StackPanel>
+                <TextBlock Text="Numer albumu"/>
+                <TextBox x:Name="_NrAlbumu"/>
+            </StackPanel>
+
+            <StackPanel>
                 <TextBlock Text="Data urodzenia"/>
                 <DatePicker x:Name="_Date"/>
             </StackPanel>
@@ -36,6 +41,11 @@
             <StackPanel>
                 <TextBlock Text="Miasto"/>
                 <TextBox x:Name="_City"/>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="Ulica"/>
+                <TextBox x:Name="_Adress"/>
             </StackPanel>
 
             <StackPanel>

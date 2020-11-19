@@ -15,7 +15,7 @@ namespace Lista3
 {
 
     [Serializable]
-   public class Person
+   public class Student
     {
 
         public string Name { get; set; }
@@ -25,6 +25,8 @@ namespace Lista3
         public int Age { get; set; }
         public string ID { get; set; }
         public string HomeCity { get; set; }
+        public string Adress { get; set; }
+        public string NumerAlbumu { get; set; }
 
 
 
@@ -34,20 +36,7 @@ namespace Lista3
 
 
 
-
-        public Person(string name,string surname,string pesel)
-        {
-
-            Name = name;
-            SurName = surname;
-            Pesel = pesel;
-
-
-
-
-        }
-
-        public Person(string name, string surname, string pesel,string homecity,DateTime date,int age)
+        public Student(string name, string surname, string pesel,string homecity,DateTime date,int age,string adress,string nralb)
         {
             Name = name;
             SurName = surname;
@@ -56,6 +45,8 @@ namespace Lista3
             HomeCity = homecity;
             DateOfBirth = date;
             Age = age;
+            Adress = adress;
+            NumerAlbumu = nralb;
 
 
         }
@@ -85,7 +76,7 @@ namespace Lista3
 
 
         
-        public Person()
+        public Student()
         {
 
         }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lista3"
         mc:Ignorable="d"
-        Title="MainWindow" Closing="Window_Closing" Height="450" Width="357" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
+        Title="MainWindow" Closing="Window_Closing" Height="450" Width="450" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_File">
@@ -43,7 +43,8 @@
                     <DataGrid.Columns  >
                         <DataGridTextColumn  Header="Imię"  Binding="{Binding Path=Name,Mode=TwoWay}"  Width="100" />
                         <DataGridTextColumn Header="Nazwisko" Binding="{Binding Path=SurName,Mode=TwoWay}" Width="100" />
-                        <DataGridTextColumn Header="Pesel" Binding="{Binding Path=Pesel,Mode=TwoWay}" Width="120" />
+                        <DataGridTextColumn Header="Pesel" Binding="{Binding Path=Pesel,Mode=TwoWay}" Width="110" />
+                        <DataGridTextColumn Header="Numer Albumu" Binding="{Binding Path=NumerAlbumu,Mode=TwoWay}"  />
                     </DataGrid.Columns>
 
                    

@@ -25,7 +25,7 @@ namespace Lista3
     public partial class MainWindow : Window
     {
 
-        public static List<Person> Persons = new List<Person>();
+        public static List<Student> Students = new List<Student>();
         public static int Index;
         public MainWindow()
         {
@@ -35,7 +35,7 @@ namespace Lista3
             //Persons.Add(new Person("Adam", "Kowalski", "asdad12313","Opole",DateTime.Now,12));
             //Persons.Add(new Person("Olek", "Telecki", "sda2313413da", "Rzeszów", DateTime.Now, 26));
 
-            Data.ItemsSource = Persons;
+            Data.ItemsSource = Students;
 
           
             
@@ -56,10 +56,10 @@ namespace Lista3
             {
                 string FilePath = saveFileDialog.FileName;
 
-                XmlSerializer serializer = new XmlSerializer(typeof(List<Person>));
+                XmlSerializer serializer = new XmlSerializer(typeof(List<Student>));
                 using (TextWriter tw = new StreamWriter($"{FilePath}"))
                 {
-                    serializer.Serialize(tw, Persons);
+                    serializer.Serialize(tw, Students);
                 }
             }
 
@@ -78,18 +78,18 @@ namespace Lista3
             if (openFileDialog.ShowDialog() == true)
             {
                 string FilePath = openFileDialog.FileName;
-                XmlSerializer xmldeserializer = new XmlSerializer(typeof(List<Person>));
+                XmlSerializer xmldeserializer = new XmlSerializer(typeof(List<Student>));
                 using (TextReader reader = new StreamReader(FilePath))
                 {
 
                     
                     object FileInfo = xmldeserializer.Deserialize(reader);
-                    Persons = (List<Person>)FileInfo;
+                    Students = (List<Student>)FileInfo;
 
                 }
 
                 Data.ItemsSource = null;
-                Data.ItemsSource = Persons;
+                Data.ItemsSource = Students;
 
             }
 
@@ -111,7 +111,7 @@ namespace Lista3
         {
             Data.ItemsSource = null;
 
-            Data.ItemsSource = Persons;
+            Data.ItemsSource = Students;
 
         }
 
@@ -124,7 +124,7 @@ namespace Lista3
 
             Data.ItemsSource = null;
 
-            Data.ItemsSource = Persons;
+            Data.ItemsSource = Students;
 
         }
 
@@ -132,8 +132,8 @@ namespace Lista3
 
         private void Data_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            var x = (Person)Data.Items[Data.SelectedIndex];
-            Index = Persons.FindIndex(item => item.ID == x.ID);
+            var x = (Student)Data.Items[Data.SelectedIndex];
+            Index = Students.FindIndex(item => item.ID == x.ID);
             OutputWindow outputWindow = new OutputWindow();
             outputWindow.Show();
             outputWindow.Closing += OutputWindow_Closing;
@@ -145,7 +145,7 @@ namespace Lista3
         {
             Data.ItemsSource = null;
 
-            Data.ItemsSource = Persons;
+            Data.ItemsSource = Students;
         }
 
 
@@ -163,10 +163,10 @@ namespace Lista3
             {
                 string FilePath = saveFileDialog.FileName;
 
-                XmlSerializer serializer = new XmlSerializer(typeof(List<Person>));
+                XmlSerializer serializer = new XmlSerializer(typeof(List<Student>));
                 using (TextWriter tw = new StreamWriter($"{FilePath}"))
                 {
-                    serializer.Serialize(tw, Persons);
+                    serializer.Serialize(tw, Students);
                 }
 
                 
@@ -177,7 +177,7 @@ namespace Lista3
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (Persons.Count!=0)
+            if (Students.Count!=0)
             {
 
 
@@ -205,7 +205,7 @@ namespace Lista3
 
         private void MenuItem_New(object sender, RoutedEventArgs e)
         {
-            if (Persons.Count != 0)
+            if (Students.Count != 0)
             {
 
 
@@ -225,9 +225,9 @@ namespace Lista3
 
                 }
             }
-            Persons.Clear();
+            Students.Clear();
             Data.ItemsSource = null;
-            Data.ItemsSource = Persons;
+            Data.ItemsSource = Students;
 
 
 

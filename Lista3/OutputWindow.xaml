@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lista3"
         mc:Ignorable="d"
-        Title="OutputWindow" ResizeMode="CanMinimize" Height="340" Width="390">
+        Title="OutputWindow" ResizeMode="CanMinimize" Height="420" Width="390">
     <Border Margin="3" Background="AliceBlue" BorderBrush="Black" BorderThickness="2" CornerRadius="2">
         <Grid  x:Name="_DataGrid">
             <Grid.ColumnDefinitions>
@@ -49,6 +49,8 @@
                     <TextBox x:Name="_SurName" Text="{Binding SurName,Mode=TwoWay}"/>
                     <TextBlock Text="Pesel"/>
                     <TextBox x:Name="_Pesel" Text="{Binding Pesel,Mode=TwoWay}"/>
+                    <TextBlock  Text="Numer albumu"  />
+                    <TextBox x:Name="_NrAlbumu" Text="{Binding NumerAlbumu,Mode=TwoWay}"/>
                     <TextBlock   Text="Wiek"/>
                     <TextBox x:Name="_Age" Text="{Binding Age,Mode=TwoWay}"/>
                
@@ -56,7 +58,9 @@
                 <DatePicker Name="_Date" Text="{Binding DateOfBirth,Mode=TwoWay}"  />
                 <TextBlock  Text="Miasto"/>
                 <TextBox x:Name="_City" Text="{Binding HomeCity,Mode=TwoWay}"/>
-                <TextBlock  Text="ID"/>
+                    <TextBlock Text="Adres"/>
+                    <TextBox x:Name="_Adress" Text="{Binding Adress,Mode=TwoWay}"/>
+                    <TextBlock  Text="ID"/>
                 <TextBox FontSize="10.5" Background="LightGray" IsReadOnly="True" Text="{Binding ID,Mode=TwoWay}"/>
                
                 
