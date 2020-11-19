@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lista3"
         mc:Ignorable="d"
-        Title="MainWindow" Closing="Window_Closing" Height="450" Width="450" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
+        Title="StudentsDataBase" Closing="Window_Closing" Height="450" Width="450" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_File">
@@ -28,10 +28,14 @@
             </MenuItem>
             <MenuItem Header="_DataBase">
                 <MenuItem Header="Inser Data" Click="Add_Click">
-                    
+                    <MenuItem.Icon>
+                        <Image Source="./Resources/AddTable_5632_32.bmp"/>
+                    </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="_Update" Click="Update_Click">
-                    
+                <MenuItem Header="_Refresh" Click="Update_Click">
+                    <MenuItem.Icon>
+                        <Image Source="./Resources/112_RefreshArrow_Blue.ico" />
+                    </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>
         </Menu>

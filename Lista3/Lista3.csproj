@@ -118,5 +118,11 @@
     <Resource Include="Resources\Compile_191_32.bmp" />
     <Resource Include="Resources\FolderOpen_7140_24.bmp" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\AddTable_5632_32.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\112_RefreshArrow_Blue.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
