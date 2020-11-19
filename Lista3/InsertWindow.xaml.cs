@@ -73,8 +73,8 @@ namespace Lista3
 
                 if (CheckText())
                 {
-                    MainWindow mainWindow = new MainWindow();
 
+                    
                     student.Name = _Name.Text;
                     student.SurName = _SurName.Text;
                     student.HomeCity = _City.Text;
@@ -85,8 +85,6 @@ namespace Lista3
                     student.DateOfBirth = (DateTime)_Date.SelectedDate;
                     student.SetId();
                     MainWindow.Students.Add(student);
-                    mainWindow.Refresh();
-                    MessageBox.Show("Success!");
                     ClearFields();
                     
 
@@ -113,6 +111,7 @@ namespace Lista3
             }
             ImageFrame.Source = null;
             _Date.SelectedDate = null;
+            student = new Student();
         }
 
 

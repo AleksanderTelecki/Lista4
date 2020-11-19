@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lista3"
         mc:Ignorable="d"
-        Title="StudentsDataBase" Closing="Window_Closing" Height="450" Width="450" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
+        Title="StudentsDataBase" Closing="Window_Closing" Height="450" Width="452" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_File">
@@ -58,7 +58,7 @@
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
                                 <Border VerticalAlignment="Center"  Margin="2"  BorderBrush="Black" BorderThickness="2">
-                                    <Image Stretch="Fill" VerticalAlignment="Top" Source="{Binding PersonImage}" Height="100"/>
+                                    <Image Stretch="Fill" VerticalAlignment="Top" Source="{Binding PersonImage}" Height="100" MaxWidth="120"/>
                                 </Border>
                                 <StackPanel Grid.Column="1" Margin="4">
                                     <TextBlock Text="Data urodzenia"/>

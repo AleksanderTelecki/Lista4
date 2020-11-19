@@ -20,6 +20,7 @@ using System.Windows.Media.Imaging;
 using System.Xml.Serialization;
 using System.Windows.Markup;
 using System.Globalization;
+using System.Collections.ObjectModel;
 
 namespace Lista3
 {
@@ -27,19 +28,26 @@ namespace Lista3
     public partial class MainWindow : Window
     {
 
-        public static List<Student> Students = new List<Student>();
+        public static ObservableCollection<Student> Students = new ObservableCollection<Student>();
         public static int Index;
         public MainWindow()
         {
+           
             InitializeComponent();
             FrameworkElement.LanguageProperty.OverrideMetadata(typeof(FrameworkElement),new FrameworkPropertyMetadata(XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag)));
 
 
             Data.ItemsSource = Students;
-
+      
+            Students.CollectionChanged += Students_CollectionChanged;
           
             
             
+        }
+
+        private void Students_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            Refresh();
         }
 
         private void MenuItem_Save(object sender, RoutedEventArgs e)
@@ -56,7 +64,7 @@ namespace Lista3
             {
                 string FilePath = saveFileDialog.FileName;
 
-                XmlSerializer serializer = new XmlSerializer(typeof(List<Student>));
+                XmlSerializer serializer = new XmlSerializer(typeof(ObservableCollection<Student>));
                 using (TextWriter tw = new StreamWriter($"{FilePath}"))
                 {
                     serializer.Serialize(tw, Students);
@@ -78,13 +86,13 @@ namespace Lista3
             if (openFileDialog.ShowDialog() == true)
             {
                 string FilePath = openFileDialog.FileName;
-                XmlSerializer xmldeserializer = new XmlSerializer(typeof(List<Student>));
+                XmlSerializer xmldeserializer = new XmlSerializer(typeof(ObservableCollection<Student>));
                 using (TextReader reader = new StreamReader(FilePath))
                 {
 
                     
                     object FileInfo = xmldeserializer.Deserialize(reader);
-                    Students = (List<Student>)FileInfo;
+                    Students = (ObservableCollection<Student>)FileInfo;
 
                 }
 
@@ -142,7 +150,7 @@ namespace Lista3
         private void Data_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             var x = (Student)Data.Items[Data.SelectedIndex];
-            Index = Students.FindIndex(item => item.ID == x.ID);
+            Index = Students.ToList<Student>().FindIndex(item => item.ID == x.ID);
             OutputWindow outputWindow = new OutputWindow();
             outputWindow.Show();
             outputWindow.Closing += OutputWindow_Closing;

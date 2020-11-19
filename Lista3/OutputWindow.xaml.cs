@@ -32,6 +32,7 @@ namespace Lista3
             textBoxes.Add(_Pesel);
             textBoxes.Add(_NrAlbumu);
             textBoxes.Add(_Adress);
+
             _DataGrid.DataContext = MainWindow.Students[MainWindow.Index];
             _Date.SelectedDateChanged += _Date_SelectedDateChanged;
             
