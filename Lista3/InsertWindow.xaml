@@ -1,0 +1,53 @@
+﻿<Window x:Class="Lista3.InsertWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lista3"
+        mc:Ignorable="d"
+        Title="InsertWindow" Height="450" Width="250">
+    <Border Margin="3" Background="AliceBlue" BorderBrush="Black" BorderThickness="2" CornerRadius="2">
+    <StackPanel Margin="4">
+            <StackPanel>
+                <TextBlock Text="Imię"/>
+                <TextBox x:Name="_Name"/>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="Nazwisko"/>
+                <TextBox x:Name="_SurName"/>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="Pesel"/>
+                <TextBox x:Name="_Pesel"/>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="Data urodzenia"/>
+                <DatePicker x:Name="_Date"/>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="Wiek"/>
+                <TextBox x:Name="_Age"/>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="Miasto"/>
+                <TextBox x:Name="_City"/>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="Zdjęcie"/>
+                <Button Click="Button_Click" Content="Otwórz"/>
+                <Image Margin="0 10 0 0" MaxHeight="100" x:Name="ImageFrame"  />
+            </StackPanel>
+
+            <Button x:Name="Save" Click="Save_Click" Content="Dodać do bazy danych"/>
+
+
+
+        </StackPanel>
+    </Border>
+</Window>
