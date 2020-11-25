@@ -10,12 +10,15 @@ using System.Windows.Media.Imaging;
 using System.Xml.Serialization;
 using System.Drawing;
 using Lista3.Properties;
+using System.ComponentModel;
+using System.Text.RegularExpressions;
+using System.Collections.ObjectModel;
 
 namespace Lista3
 {
 
     [Serializable]
-   public class Student
+   public class Student:IDataErrorInfo
     {
 
         public string Name { get; set; }
@@ -28,13 +31,112 @@ namespace Lista3
         public string Adress { get; set; }
         public string NumerAlbumu { get; set; }
 
+        [XmlIgnore]
+        public string Error
+        {
+            get
+            {
+               
+                return null;
+            }
+        }
+
+        [XmlIgnore]
+        public Dictionary<string, string> ErrorsColl { get; set; } = new Dictionary<string, string>();
+
+        [XmlIgnore]
+        public string this[string name]
+        {
+
+            get
+            {
+                string result = null;
+
+
+                switch (name)
+                {
+
+                    case "Name":
+                        result = ValidateName();
+                        break;
+                    case "NumerAlbumu":
+                        result = ValidateNrAlbum();
+                        break;
+                    case "SurName":
+                        result = ValidateName();
+                        break;
 
 
 
 
+                }
+
+                if (ErrorsColl.ContainsKey(name))
+                {
+                    ErrorsColl[name] = result;
+                }
+                else if(result!=null)
+                {
+                    ErrorsColl.Add(name, result);
+                }
+
+               
+                
+                return result;
+            }
+
+        }
+
+        private string ValidateNrAlbum()
+        {
 
 
+            if (String.IsNullOrEmpty(NumerAlbumu))
+            {
+                return "Cant be empty";
+            }
 
+
+            if (!(int.TryParse(NumerAlbumu, out int res)))
+            {
+
+                return "Must be numerical";
+
+            }
+
+            if (NumerAlbumu.Length<6)
+            {
+                return "Must be 6 numbers";
+            }
+
+            if (NumerAlbumu.Length>6)
+            {
+                return "Can't be more then 6 numbers";
+            }
+
+           
+
+          
+
+            return null;
+
+        }
+
+        private string ValidateName()
+        {
+            if (String.IsNullOrEmpty(Name))
+            {
+                return "Cant Null";
+            }
+
+            if (Regex.IsMatch(Name,@"\d"))
+            {
+                return "Cant Numerical";
+            }
+
+            return null;
+            
+        }
 
         public Student(string name, string surname, string pesel,string homecity,DateTime date,int age,string adress,string nralb)
         {
@@ -72,10 +174,8 @@ namespace Lista3
         public string PersonStringImage { get; set; }
 
 
+    
 
-
-
-        
         public Student()
         {
 

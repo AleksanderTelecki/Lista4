@@ -37,6 +37,7 @@ namespace Lista3
             textBoxes.Add(_Adress);
             textBoxes.Add(_NrAlbumu);
             _Date.SelectedDateChanged += _Date_SelectedDateChanged;
+            DataStack.DataContext = new Student();
 
         }
 
@@ -74,7 +75,7 @@ namespace Lista3
                 if (CheckText())
                 {
 
-                    
+                  
                     student.Name = _Name.Text;
                     student.SurName = _SurName.Text;
                     student.HomeCity = _City.Text;
@@ -117,20 +118,22 @@ namespace Lista3
 
         private bool CheckText()
         {
-
+            string ErrorBox = "";
             bool checker = true;
             foreach (var item in textBoxes)
             {
-                if (String.IsNullOrEmpty(item.Text))
+                if (item.ToolTip!=null)
                 {
-                    item.Background = Brushes.Red;
-                    checker=false;
-                }
-                else
-                {
-                    item.Background = Brushes.White;
+                    ErrorBox += $"Field:{item.Name} - Error: {item.ToolTip}\n";
+                    checker = false;
                 }
 
+            }
+
+
+            if (!checker)
+            {
+                MessageBox.Show(ErrorBox,"Invalid data!");
             }
 
             return checker;

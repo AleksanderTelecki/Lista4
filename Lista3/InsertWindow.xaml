@@ -7,15 +7,15 @@
         mc:Ignorable="d"
         Title="InsertWindow" Height="500" Width="250">
     <Border Margin="3" Background="AliceBlue" BorderBrush="Black" BorderThickness="2" CornerRadius="2">
-    <StackPanel Margin="4">
+    <StackPanel Margin="4" x:Name="DataStack">
             <StackPanel>
                 <TextBlock Text="Imię"/>
-                <TextBox x:Name="_Name"/>
+                <TextBox Text="{Binding Name,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self},Path=(Validation.Errors)[0].ErrorContent}" x:Name="_Name"/>
             </StackPanel>
 
             <StackPanel>
                 <TextBlock Text="Nazwisko"/>
-                <TextBox x:Name="_SurName"/>
+                <TextBox Text="{Binding SurName,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self},Path=(Validation.Errors)[0].ErrorContent}" x:Name="_SurName"/>
             </StackPanel>
 
             <StackPanel>
@@ -25,7 +25,7 @@
 
             <StackPanel>
                 <TextBlock Text="Numer albumu"/>
-                <TextBox x:Name="_NrAlbumu"/>
+                <TextBox Text="{Binding NumerAlbumu,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self},Path=(Validation.Errors)[0].ErrorContent}" x:Name="_NrAlbumu"/>
             </StackPanel>
 
             <StackPanel>
