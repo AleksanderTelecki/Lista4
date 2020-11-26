@@ -88,6 +88,8 @@ namespace Lista3
                     MainWindow.Students[MainWindow.Index].NumerAlbumu = _NrAlbumu.Text;
 
                     MessageBox.Show("Success!");
+                    MainWindow myWindow = Application.Current.MainWindow as MainWindow;
+                    myWindow.Refresh();
                 }
               
 

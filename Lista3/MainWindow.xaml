@@ -43,7 +43,7 @@
 
             
             <Border Margin="3" Background="LightSlateGray" BorderBrush="AliceBlue" CornerRadius="3" BorderThickness="4">
-                <DataGrid  MouseDoubleClick="Data_MouseDoubleClick" FontSize="14" Grid.Column="2"  x:Name="Data" AutoGenerateColumns="False">
+                <DataGrid IsReadOnly="True" MouseDoubleClick="Data_MouseDoubleClick" FontSize="14" Grid.Column="2"  x:Name="Data" AutoGenerateColumns="False">
                     <DataGrid.Columns  >
                         <DataGridTextColumn  Header="Imię"  Binding="{Binding Path=Name,Mode=TwoWay}"  Width="100" />
                         <DataGridTextColumn Header="Nazwisko" Binding="{Binding Path=SurName,Mode=TwoWay}" Width="100" />
