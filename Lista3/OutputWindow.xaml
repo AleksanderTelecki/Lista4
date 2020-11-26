@@ -44,22 +44,22 @@
             <StackPanel Margin="4" Grid.Column="2">
                 <StackPanel Orientation="Vertical">
                     <TextBlock  Text="Imię"/>
-                    <TextBox x:Name="_Name" Text="{Binding Name,Mode=TwoWay}"/>
+                    <TextBox x:Name="_Name" Text="{Binding Name,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self},Path=(Validation.Errors)[0].ErrorContent}"/>
                     <TextBlock  Text="Nazwisko"/>
-                    <TextBox x:Name="_SurName" Text="{Binding SurName,Mode=TwoWay}"/>
+                    <TextBox x:Name="_SurName" Text="{Binding SurName,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self},Path=(Validation.Errors)[0].ErrorContent}"/>
                     <TextBlock Text="Pesel"/>
-                    <TextBox x:Name="_Pesel" Text="{Binding Pesel,Mode=TwoWay}"/>
+                    <TextBox x:Name="_Pesel" Text="{Binding Pesel,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self},Path=(Validation.Errors)[0].ErrorContent}"/>
                     <TextBlock  Text="Numer albumu"  />
-                    <TextBox x:Name="_NrAlbumu" Text="{Binding NumerAlbumu,Mode=TwoWay}"/>
+                    <TextBox x:Name="_NrAlbumu" Text="{Binding NumerAlbumu,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self},Path=(Validation.Errors)[0].ErrorContent}"/>
                     <TextBlock   Text="Wiek"/>
                     <TextBox Background="LightGray" IsReadOnly="True" x:Name="_Age" Text="{Binding Age,Mode=TwoWay}"/>
                
                 <TextBlock Text="Data Urodzenia"/>
                 <DatePicker Name="_Date" Text="{Binding DateOfBirth}"  />
                 <TextBlock  Text="Miasto"/>
-                <TextBox x:Name="_City" Text="{Binding HomeCity,Mode=TwoWay}"/>
-                    <TextBlock Text="Adres"/>
-                    <TextBox x:Name="_Adress" Text="{Binding Adress,Mode=TwoWay}"/>
+                    <TextBox x:Name="_City" Text="{Binding HomeCity,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self},Path=(Validation.Errors)[0].ErrorContent}"/>
+                    <TextBlock Text="Ulica"/>
+                    <TextBox x:Name="_Adress" Text="{Binding Adress,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self},Path=(Validation.Errors)[0].ErrorContent}"/>
                     <TextBlock  Text="ID"/>
                 <TextBox FontSize="10.5" Background="LightGray" IsReadOnly="True" Text="{Binding ID,Mode=TwoWay}"/>
                

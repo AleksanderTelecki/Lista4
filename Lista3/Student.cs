@@ -63,8 +63,18 @@ namespace Lista3
                         result = ValidateNrAlbum();
                         break;
                     case "SurName":
-                        result = ValidateName();
+                        result = ValidateSurName();
                         break;
+                    case "HomeCity":
+                        result = ValidateCityName();
+                        break;
+                    case "Adress":
+                        result = ValidateAdress();
+                        break;
+                    case "Pesel":
+                        result = ValidatePesel();
+                        break;
+                   
 
 
 
@@ -85,6 +95,56 @@ namespace Lista3
                 return result;
             }
 
+        }
+
+        private string ValidateCityName()
+        {
+            if (String.IsNullOrEmpty(HomeCity))
+            {
+                return "Cant Null";
+            }
+
+            if (Regex.IsMatch(HomeCity, @"\d"))
+            {
+                return "Cant Numerical";
+            }
+
+            return null;
+        }
+
+       
+
+        private string ValidatePesel()
+        {
+
+            if (String.IsNullOrEmpty(Pesel))
+            {
+                return "Cant be empty";
+            }
+
+
+          
+
+            if (Pesel.Length < 11)
+            {
+                return "Must be 11 numbers";
+            }
+
+            if (Pesel.Length > 11)
+            {
+                return "Can't be more then 11 numbers";
+            }
+
+            if ((double.TryParse(Pesel,out double redf))!=true)
+            {
+
+                return "Must be numerical";
+
+            }
+
+
+
+            return null;
         }
 
         private string ValidateNrAlbum()
@@ -129,13 +189,47 @@ namespace Lista3
                 return "Cant Null";
             }
 
-            if (Regex.IsMatch(Name,@"\d"))
+            if (Regex.IsMatch(Name, @"\d"))
             {
                 return "Cant Numerical";
             }
 
             return null;
             
+        }
+
+        private string ValidateSurName()
+        {
+            if (String.IsNullOrEmpty(SurName))
+            {
+                return "Cant Null";
+            }
+
+            if (Regex.IsMatch(SurName, @"\d"))
+            {
+                return "Cant Numerical";
+            }
+
+            return null;
+
+        }
+
+        private string ValidateAdress()
+        {
+            if (String.IsNullOrEmpty(Adress))
+            {
+                return "Cant Null";
+            }
+
+            if (Adress.Length>30)
+            {
+                return "Can't be more then 30 symbols";
+            }
+
+
+
+            return null;
+
         }
 
         public Student(string name, string surname, string pesel,string homecity,DateTime date,int age,string adress,string nralb)
@@ -202,6 +296,25 @@ namespace Lista3
             System.Drawing.Image imageStr = System.Drawing.Image.FromStream(new MemoryStream(arrayimg));
             return imageStr;
         }
+
+
+        public static void Copy(Student copyfrom, Student copyto)
+        {
+            copyto.Adress = copyfrom.Adress;
+            copyto.Name = copyfrom.Name;
+            copyto.SurName = copyfrom.SurName;
+            copyto.Pesel = copyfrom.Pesel;
+            copyto.ID = copyfrom.ID;
+            copyto.HomeCity = copyfrom.HomeCity;
+            copyto.NumerAlbumu = copyfrom.NumerAlbumu;
+            copyto.Age = copyfrom.Age;
+            copyto.DateOfBirth = copyfrom.DateOfBirth;
+            copyto.PersonStringImage = copyfrom.PersonStringImage;
+            
+  
+
+        }
+
 
         public BitmapImage BitmapToImageSource(Bitmap bitmap)
         {

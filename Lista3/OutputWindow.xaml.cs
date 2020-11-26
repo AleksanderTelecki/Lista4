@@ -22,6 +22,7 @@ namespace Lista3
     {
 
         List<TextBox> textBoxes = new List<TextBox>();
+        Student student = new Student();
         public OutputWindow()
         {
             InitializeComponent();
@@ -32,20 +33,37 @@ namespace Lista3
             textBoxes.Add(_Pesel);
             textBoxes.Add(_NrAlbumu);
             textBoxes.Add(_Adress);
-
-            _DataGrid.DataContext = MainWindow.Students[MainWindow.Index];
+            Student.Copy(MainWindow.Students[MainWindow.Index], student);
+            _DataGrid.DataContext = student;
             _Date.SelectedDateChanged += _Date_SelectedDateChanged;
             
         }
 
         private void _Date_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (_Date.SelectedDate!=null)
+            if (_Date.SelectedDate != null)
             {
 
-                var Text = (DateTime.Today - _Date.SelectedDate).Value.Days.ToString();
-                _Age.Text = (int.Parse(Text) / 365).ToString();
 
+                var Text = (DateTime.Today - _Date.SelectedDate).Value.Days.ToString();
+                int age = (int.Parse(Text) / 365);
+                if (age < 18 || age > 90)
+                {
+                    _Date.ToolTip = "Cant be lower of 18 or higher of 90";
+                    _Date.BorderBrush = Brushes.Red;
+                }
+                else
+                {
+                    _Date.ToolTip = null;
+                    _Date.BorderBrush = Brushes.White;
+                }
+                _Age.Text = age.ToString();
+
+            }
+            else
+            {
+                _Date.ToolTip = "Cant be null";
+                _Date.BorderBrush = Brushes.Red;
             }
         }
 
@@ -68,12 +86,16 @@ namespace Lista3
                     MainWindow.Students[MainWindow.Index].DateOfBirth = _Date.SelectedDate.Value;
                     MainWindow.Students[MainWindow.Index].Adress = _Adress.Text;
                     MainWindow.Students[MainWindow.Index].NumerAlbumu = _NrAlbumu.Text;
-                  MessageBox.Show("Success!");
+
+                    MessageBox.Show("Success!");
                 }
+              
+
+
             }
             catch (Exception)
             {
-                MessageBox.Show("Field:<Wiek> - Incorect Data");
+                MessageBox.Show("Incorect Data");
 
             }
         }
@@ -82,19 +104,27 @@ namespace Lista3
         private bool CheckText()
         {
 
+            string ErrorBox = "";
             bool checker = true;
             foreach (var item in textBoxes)
             {
-                if (String.IsNullOrEmpty(item.Text))
+                if (item.ToolTip != null)
                 {
-                    item.Background = Brushes.Red;
+                    ErrorBox += $"Field:{item.Name} - Error: {item.ToolTip}\n";
                     checker = false;
                 }
-                else
-                {
-                    item.Background = Brushes.White;
-                }
 
+            }
+
+            if (_Date.ToolTip != null || _Date.SelectedDate == null)
+            {
+                checker = false;
+                ErrorBox += $"Field:{_Date.Name} - Error: {_Date.ToolTip}\n";
+            }
+
+            if (!checker)
+            {
+                MessageBox.Show(ErrorBox, "Invalid data!");
             }
 
             return checker;

@@ -20,7 +20,7 @@
 
             <StackPanel>
                 <TextBlock Text="Pesel"/>
-                <TextBox x:Name="_Pesel"/>
+                <TextBox Text="{Binding Pesel,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self},Path=(Validation.Errors)[0].ErrorContent}" x:Name="_Pesel"/>
             </StackPanel>
 
             <StackPanel>
@@ -40,12 +40,12 @@
 
             <StackPanel>
                 <TextBlock Text="Miasto"/>
-                <TextBox x:Name="_City"/>
+                <TextBox Text="{Binding HomeCity,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self},Path=(Validation.Errors)[0].ErrorContent}" x:Name="_City"/>
             </StackPanel>
 
             <StackPanel>
                 <TextBlock Text="Ulica"/>
-                <TextBox x:Name="_Adress"/>
+                <TextBox Text="{Binding Adress,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self},Path=(Validation.Errors)[0].ErrorContent}" x:Name="_Adress"/>
             </StackPanel>
 
             <StackPanel>

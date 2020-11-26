@@ -38,6 +38,8 @@ namespace Lista3
             textBoxes.Add(_NrAlbumu);
             _Date.SelectedDateChanged += _Date_SelectedDateChanged;
             DataStack.DataContext = new Student();
+            _Date.ToolTip = "Cant be null";
+            _Date.BorderBrush = Brushes.Red;
 
         }
 
@@ -48,8 +50,26 @@ namespace Lista3
 
 
                 var Text = (DateTime.Today - _Date.SelectedDate).Value.Days.ToString();
-                _Age.Text = (int.Parse(Text) / 365).ToString();
+                int age = (int.Parse(Text) / 365);
+                if (age<18||age>90)
+                {
+                    _Date.ToolTip = "Cant be lower of 18 or higher of 90";
+                    _Date.BorderBrush = Brushes.Red;
+                }
+                else
+                {
+                    _Date.ToolTip = null;
+                    _Date.BorderBrush = Brushes.White;
+                }
+                _Age.Text = age.ToString();
+
             }
+            else
+            {
+                _Date.ToolTip = "Cant be null";
+                _Date.BorderBrush = Brushes.Red;
+            }
+         
 
         }
 
@@ -130,6 +150,11 @@ namespace Lista3
 
             }
 
+            if (_Date.ToolTip!=null||_Date.SelectedDate==null)
+            {
+                checker = false;
+                ErrorBox += $"Field:{_Date.Name} - Error: {_Date.ToolTip}\n";
+            }
 
             if (!checker)
             {
