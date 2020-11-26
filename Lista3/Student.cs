@@ -101,12 +101,12 @@ namespace Lista3
         {
             if (String.IsNullOrEmpty(HomeCity))
             {
-                return "Cant Null";
+                return "Pole nie może być puste";
             }
 
             if (Regex.IsMatch(HomeCity, @"\d"))
             {
-                return "Cant Numerical";
+                return "Nie może zawierać symbole numeryczne";
             }
 
             return null;
@@ -119,28 +119,29 @@ namespace Lista3
 
             if (String.IsNullOrEmpty(Pesel))
             {
-                return "Cant be empty";
+                return "Pole nie może być puste";
             }
 
 
-          
+            if ((double.TryParse(Pesel, out double redf)) != true)
+            {
+
+                return "Pole musi zawierać wyłacznie cyfry";
+
+            }
+
 
             if (Pesel.Length < 11)
             {
-                return "Must be 11 numbers";
+                return "Musi zawierać 11 cyfr";
             }
 
             if (Pesel.Length > 11)
             {
-                return "Can't be more then 11 numbers";
+                return "Musi zawierać 11 cyfr";
             }
 
-            if ((double.TryParse(Pesel,out double redf))!=true)
-            {
-
-                return "Must be numerical";
-
-            }
+           
 
 
 
@@ -153,25 +154,25 @@ namespace Lista3
 
             if (String.IsNullOrEmpty(NumerAlbumu))
             {
-                return "Cant be empty";
+                return "Pole nie może być puste";
             }
 
 
             if (!(int.TryParse(NumerAlbumu, out int res)))
             {
 
-                return "Must be numerical";
+                return "Pole musi zawierać wyłacznie cyfry";
 
             }
 
             if (NumerAlbumu.Length<6)
             {
-                return "Must be 6 numbers";
+                return "Musi zawierać 6 cyfr";
             }
 
             if (NumerAlbumu.Length>6)
             {
-                return "Can't be more then 6 numbers";
+                return "Musi zawierać 6 cyfr";
             }
 
            
@@ -184,14 +185,19 @@ namespace Lista3
 
         private string ValidateName()
         {
+
+
+
             if (String.IsNullOrEmpty(Name))
             {
-                return "Cant Null";
+                return "Pole nie może być puste";
             }
 
-            if (Regex.IsMatch(Name, @"\d"))
+
+            if (!Regex.IsMatch(Name, "^[a-zA-Z]+$"))
             {
-                return "Cant Numerical";
+
+                return "Pole nie może zawierać inne symbole oprócz liter";
             }
 
             return null;
@@ -202,12 +208,13 @@ namespace Lista3
         {
             if (String.IsNullOrEmpty(SurName))
             {
-                return "Cant Null";
+                return "Pole nie może być puste";
             }
 
-            if (Regex.IsMatch(SurName, @"\d"))
+            if (!Regex.IsMatch(SurName, "^[a-zA-Z]+$"))
             {
-                return "Cant Numerical";
+
+                return "Pole nie może zawierać inne symbole oprócz liter";
             }
 
             return null;
@@ -218,12 +225,12 @@ namespace Lista3
         {
             if (String.IsNullOrEmpty(Adress))
             {
-                return "Cant Null";
+                return "Pole nie może być puste";
             }
 
             if (Adress.Length>30)
             {
-                return "Can't be more then 30 symbols";
+                return "Pole nie może zawierać więcej niż 30 symboli";
             }
 
 

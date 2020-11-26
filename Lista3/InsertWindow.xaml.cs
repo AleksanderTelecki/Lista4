@@ -38,7 +38,7 @@ namespace Lista3
             textBoxes.Add(_NrAlbumu);
             _Date.SelectedDateChanged += _Date_SelectedDateChanged;
             DataStack.DataContext = new Student();
-            _Date.ToolTip = "Cant be null";
+            _Date.ToolTip = "Pole nie może być puste";
             _Date.BorderBrush = Brushes.Red;
 
         }
@@ -53,7 +53,7 @@ namespace Lista3
                 int age = (int.Parse(Text) / 365);
                 if (age<18||age>90)
                 {
-                    _Date.ToolTip = "Cant be lower of 18 or higher of 90";
+                    _Date.ToolTip = "Wartość może być tylko w okresie od 18 lat do 90 lat";
                     _Date.BorderBrush = Brushes.Red;
                 }
                 else
@@ -66,7 +66,7 @@ namespace Lista3
             }
             else
             {
-                _Date.ToolTip = "Cant be null";
+                _Date.ToolTip = "Pole nie może być puste";
                 _Date.BorderBrush = Brushes.Red;
             }
          
@@ -113,7 +113,7 @@ namespace Lista3
             }
             catch (Exception)
             {
-                MessageBox.Show("Field:<Wiek> - Incorect Data");
+                MessageBox.Show("Incorect Data");
                 
             }
 
