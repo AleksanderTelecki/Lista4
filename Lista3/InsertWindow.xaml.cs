@@ -24,7 +24,7 @@ namespace Lista3
     {
 
 
-        Student student = new Student();
+        StudentCheker student = new StudentCheker();
         List<TextBox> textBoxes = new List<TextBox>();
         public InsertWindow()
         {
@@ -37,7 +37,7 @@ namespace Lista3
             textBoxes.Add(_Adress);
             textBoxes.Add(_NrAlbumu);
             _Date.SelectedDateChanged += _Date_SelectedDateChanged;
-            DataStack.DataContext = new Student();
+            DataStack.DataContext = new StudentCheker();
             _Date.ToolTip = "Pole nie może być puste";
             _Date.BorderBrush = Brushes.Red;
 
@@ -78,7 +78,7 @@ namespace Lista3
             OpenFileDialog saveFileDialog = new OpenFileDialog();
             if (saveFileDialog.ShowDialog() == true)
             {
-                student.PersonStringImage = Student.ImgToStr(saveFileDialog.FileName);
+                student.PersonStringImage = StudentCheker.ImgToStr(saveFileDialog.FileName);
                 ImageFrame.Source = student.PersonImage;  
             }
 
@@ -132,7 +132,7 @@ namespace Lista3
             }
             ImageFrame.Source = null;
             _Date.SelectedDate = null;
-            student = new Student();
+            student = new StudentCheker();
         }
 
 

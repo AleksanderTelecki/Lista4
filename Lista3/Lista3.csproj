@@ -84,7 +84,7 @@
     <Compile Include="OutputWindow.xaml.cs">
       <DependentUpon>OutputWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Student.cs" />
+    <Compile Include="StudentCheker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

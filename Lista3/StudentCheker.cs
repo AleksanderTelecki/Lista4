@@ -18,7 +18,7 @@ namespace Lista3
 {
 
     [Serializable]
-   public class Student:IDataErrorInfo
+   public class StudentCheker:IDataErrorInfo
     {
 
         public string Name { get; set; }
@@ -239,7 +239,7 @@ namespace Lista3
 
         }
 
-        public Student(string name, string surname, string pesel,string homecity,DateTime date,int age,string adress,string nralb)
+        public StudentCheker(string name, string surname, string pesel,string homecity,DateTime date,int age,string adress,string nralb)
         {
             Name = name;
             SurName = surname;
@@ -277,7 +277,7 @@ namespace Lista3
 
     
 
-        public Student()
+        public StudentCheker()
         {
 
         }
@@ -305,7 +305,7 @@ namespace Lista3
         }
 
 
-        public static void Copy(Student copyfrom, Student copyto)
+        public static void Copy(StudentCheker copyfrom, StudentCheker copyto)
         {
             copyto.Adress = copyfrom.Adress;
             copyto.Name = copyfrom.Name;
