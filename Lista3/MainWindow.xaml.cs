@@ -4,13 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-
 using System.Drawing;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
@@ -21,6 +19,7 @@ using System.Xml.Serialization;
 using System.Windows.Markup;
 using System.Globalization;
 using System.Collections.ObjectModel;
+using System.Windows.Controls;
 
 namespace Lista3
 {
@@ -28,7 +27,7 @@ namespace Lista3
     public partial class MainWindow : Window
     {
 
-        public static ObservableCollection<StudentCheker> Students = new ObservableCollection<StudentCheker>();
+        public static ObservableCollection<Student> Students = new ObservableCollection<Student>();
         public static int Index;
         public MainWindow()
         {
@@ -37,7 +36,7 @@ namespace Lista3
             FrameworkElement.LanguageProperty.OverrideMetadata(typeof(FrameworkElement),new FrameworkPropertyMetadata(XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag)));
 
 
-            Data.ItemsSource = Students;
+            Data.ItemsSource = Students.ToList<Student>();
       
             Students.CollectionChanged += Students_CollectionChanged;
           
@@ -55,21 +54,21 @@ namespace Lista3
 
 
 
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.DefaultExt = "xml";
-            saveFileDialog.Filter = "XML-File | *.xml";
-            saveFileDialog.FilterIndex = 1;
+            //SaveFileDialog saveFileDialog = new SaveFileDialog();
+            //saveFileDialog.DefaultExt = "xml";
+            //saveFileDialog.Filter = "XML-File | *.xml";
+            //saveFileDialog.FilterIndex = 1;
 
-            if (saveFileDialog.ShowDialog() == true)
-            {
-                string FilePath = saveFileDialog.FileName;
+            //if (saveFileDialog.ShowDialog() == true)
+            //{
+            //    string FilePath = saveFileDialog.FileName;
 
-                XmlSerializer serializer = new XmlSerializer(typeof(ObservableCollection<StudentCheker>));
-                using (TextWriter tw = new StreamWriter($"{FilePath}"))
-                {
-                    serializer.Serialize(tw, Students);
-                }
-            }
+            //    XmlSerializer serializer = new XmlSerializer(typeof(ObservableCollection<StudentCheker>));
+            //    using (TextWriter tw = new StreamWriter($"{FilePath}"))
+            //    {
+            //        serializer.Serialize(tw, Students);
+            //    }
+            //}
 
 
         }
@@ -81,25 +80,25 @@ namespace Lista3
 
         private void MenuItem_Open(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "XML-File | *.xml";
-            if (openFileDialog.ShowDialog() == true)
-            {
-                string FilePath = openFileDialog.FileName;
-                XmlSerializer xmldeserializer = new XmlSerializer(typeof(ObservableCollection<StudentCheker>));
-                using (TextReader reader = new StreamReader(FilePath))
-                {
+            //OpenFileDialog openFileDialog = new OpenFileDialog();
+            //openFileDialog.Filter = "XML-File | *.xml";
+            //if (openFileDialog.ShowDialog() == true)
+            //{
+            //    string FilePath = openFileDialog.FileName;
+            //    XmlSerializer xmldeserializer = new XmlSerializer(typeof(ObservableCollection<StudentCheker>));
+            //    using (TextReader reader = new StreamReader(FilePath))
+            //    {
 
                     
-                    object FileInfo = xmldeserializer.Deserialize(reader);
-                    Students = (ObservableCollection<StudentCheker>)FileInfo;
+            //        object FileInfo = xmldeserializer.Deserialize(reader);
+            //        Students = (ObservableCollection<StudentCheker>)FileInfo;
 
-                }
+            //    }
 
-                Data.ItemsSource = null;
-                Data.ItemsSource = Students;
+            //    Data.ItemsSource = null;
+            //    Data.ItemsSource = Students;
 
-            }
+            //}
 
         }
 
@@ -149,8 +148,8 @@ namespace Lista3
 
         private void Data_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            var x = (StudentCheker)Data.Items[Data.SelectedIndex];
-            Index = Students.ToList<StudentCheker>().FindIndex(item => item.ID == x.ID);
+            var x = (Student)Data.Items[Data.SelectedIndex];
+            Index = Students.ToList<Student>().FindIndex(item => item.id_stud == x.id_stud);
             OutputWindow outputWindow = new OutputWindow();
             outputWindow.Show();
             outputWindow.Closing += OutputWindow_Closing;

@@ -22,7 +22,7 @@ namespace Lista3
     {
 
         List<TextBox> textBoxes = new List<TextBox>();
-        StudentCheker student = new StudentCheker();
+        Student student = new Student();
         public OutputWindow()
         {
             InitializeComponent();
@@ -33,7 +33,7 @@ namespace Lista3
             textBoxes.Add(_Pesel);
             textBoxes.Add(_NrAlbumu);
             textBoxes.Add(_Adress);
-            StudentCheker.Copy(MainWindow.Students[MainWindow.Index], student);
+            Student.Copy(MainWindow.Students[MainWindow.Index], student);
             _DataGrid.DataContext = student;
             _Date.SelectedDateChanged += _Date_SelectedDateChanged;
             
@@ -69,37 +69,37 @@ namespace Lista3
 
         private void _Save_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
+            //try
+            //{
 
 
 
-                if (CheckText())
-                {
+            //    if (CheckText())
+            //    {
 
 
-                    MainWindow.Students[MainWindow.Index].Name = _Name.Text;
-                    MainWindow.Students[MainWindow.Index].SurName = _SurName.Text;
-                    MainWindow.Students[MainWindow.Index].HomeCity = _City.Text;
-                    MainWindow.Students[MainWindow.Index].Pesel = _Pesel.Text;
-                    MainWindow.Students[MainWindow.Index].Age = int.Parse(_Age.Text);
-                    MainWindow.Students[MainWindow.Index].DateOfBirth = _Date.SelectedDate.Value;
-                    MainWindow.Students[MainWindow.Index].Adress = _Adress.Text;
-                    MainWindow.Students[MainWindow.Index].NumerAlbumu = _NrAlbumu.Text;
+            //        MainWindow.Students[MainWindow.Index].Name = _Name.Text;
+            //        MainWindow.Students[MainWindow.Index].SurName = _SurName.Text;
+            //        MainWindow.Students[MainWindow.Index].HomeCity = _City.Text;
+            //        MainWindow.Students[MainWindow.Index].Pesel = _Pesel.Text;
+            //        MainWindow.Students[MainWindow.Index].Age = int.Parse(_Age.Text);
+            //        MainWindow.Students[MainWindow.Index].DateOfBirth = _Date.SelectedDate.Value;
+            //        MainWindow.Students[MainWindow.Index].Adress = _Adress.Text;
+            //        MainWindow.Students[MainWindow.Index].NumerAlbumu = _NrAlbumu.Text;
 
-                    MessageBox.Show("Success!");
-                    MainWindow myWindow = Application.Current.MainWindow as MainWindow;
-                    myWindow.Refresh();
-                }
+            //        MessageBox.Show("Success!");
+            //        MainWindow myWindow = Application.Current.MainWindow as MainWindow;
+            //        myWindow.Refresh();
+            //    }
               
 
 
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Incorect Data");
+            //}
+            //catch (Exception)
+            //{
+            //    MessageBox.Show("Incorect Data");
 
-            }
+            //}
         }
 
 
@@ -141,13 +141,13 @@ namespace Lista3
 
         private void _ChangeImage_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog saveFileDialog = new OpenFileDialog();
-            if (saveFileDialog.ShowDialog() == true)
-            {
-                MainWindow.Students[MainWindow.Index].PersonStringImage = StudentCheker.ImgToStr(saveFileDialog.FileName);
-            }
+            //OpenFileDialog saveFileDialog = new OpenFileDialog();
+            //if (saveFileDialog.ShowDialog() == true)
+            //{
+            //    MainWindow.Students[MainWindow.Index].PersonStringImage = StudentCheker.ImgToStr(saveFileDialog.FileName);
+            //}
 
-            _Image.Source = MainWindow.Students[MainWindow.Index].PersonImage;
+            //_Image.Source = MainWindow.Students[MainWindow.Index].PersonImage;
 
 
         }

@@ -45,10 +45,10 @@
             <Border Margin="3" Background="LightSlateGray" BorderBrush="AliceBlue" CornerRadius="3" BorderThickness="4">
                 <DataGrid IsReadOnly="True" MouseDoubleClick="Data_MouseDoubleClick" FontSize="14" Grid.Column="2"  x:Name="Data" AutoGenerateColumns="False">
                     <DataGrid.Columns  >
-                        <DataGridTextColumn  Header="Imię"  Binding="{Binding Path=Name,Mode=TwoWay}"  Width="100" />
-                        <DataGridTextColumn Header="Nazwisko" Binding="{Binding Path=SurName,Mode=TwoWay}" Width="100" />
-                        <DataGridTextColumn Header="Pesel" Binding="{Binding Path=Pesel,Mode=TwoWay}" Width="110" />
-                        <DataGridTextColumn Header="Numer Albumu" Binding="{Binding Path=NumerAlbumu,Mode=TwoWay}"  />
+                        <DataGridTextColumn  Header="Imię"  Binding="{Binding NAME,Mode=TwoWay}"  Width="100" />
+                        <DataGridTextColumn Header="Nazwisko" Binding="{Binding SURNAME,Mode=TwoWay}" Width="100" />
+                        <DataGridTextColumn Header="Pesel" Binding="{Binding PESEL,Mode=TwoWay}" Width="110" />
+                        <DataGridTextColumn Header="Numer Albumu" Binding="{Binding NR_ALBUM,Mode=TwoWay}"  />
                     </DataGrid.Columns>
                     <DataGrid.RowDetailsTemplate>
                         <DataTemplate>
@@ -58,17 +58,17 @@
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
                                 <Border VerticalAlignment="Center"  Margin="2"  BorderBrush="Black" BorderThickness="2">
-                                    <Image Stretch="Fill" VerticalAlignment="Top" Source="{Binding PersonImage}" Height="100" MaxWidth="120"/>
+                                    <Image Stretch="Fill" VerticalAlignment="Top" Source="{Binding ImgSource}" Height="100" MaxWidth="120"/>
                                 </Border>
                                 <StackPanel Grid.Column="1" Margin="4">
                                     <TextBlock Text="Data urodzenia"/>
-                                    <TextBox Background="LightGray" IsReadOnly="True" Text="{Binding DateOfBirth,StringFormat='d'}"/>
+                                    <TextBox Background="LightGray" IsReadOnly="True" Text="{Binding BIRTHDATE,StringFormat='d'}"/>
                                     <TextBlock Text="Miasto"/>
-                                    <TextBox Background="LightGray" IsReadOnly="True" Text="{Binding HomeCity}"/>
+                                    <TextBox Background="LightGray" IsReadOnly="True" Text="{Binding ADRESS_CITY}"/>
                                     <TextBlock Text="Adres"/>
-                                    <TextBox Background="LightGray" IsReadOnly="True" Text="{Binding Adress}"/>
+                                    <TextBox Background="LightGray" IsReadOnly="True" Text="{Binding ADRESS_STREET}"/>
                                     <TextBlock Text="ID"/>
-                                    <TextBox Background="LightGray" IsReadOnly="True" Text="{Binding ID}"/>
+                                    <TextBox Background="LightGray" IsReadOnly="True" Text="{Binding id_stud}"/>
                                 </StackPanel>
 
 

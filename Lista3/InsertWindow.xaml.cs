@@ -24,7 +24,7 @@ namespace Lista3
     {
 
 
-        StudentCheker student = new StudentCheker();
+        Student student = new Student();
         List<TextBox> textBoxes = new List<TextBox>();
         public InsertWindow()
         {
@@ -78,8 +78,8 @@ namespace Lista3
             OpenFileDialog saveFileDialog = new OpenFileDialog();
             if (saveFileDialog.ShowDialog() == true)
             {
-                student.PersonStringImage = StudentCheker.ImgToStr(saveFileDialog.FileName);
-                ImageFrame.Source = student.PersonImage;  
+                student.AddImage(new Bitmap(saveFileDialog.FileName));
+                ImageFrame.Source = student.GetImage(); 
             }
 
         }
@@ -96,16 +96,19 @@ namespace Lista3
                 {
 
                   
-                    student.Name = _Name.Text;
-                    student.SurName = _SurName.Text;
-                    student.HomeCity = _City.Text;
-                    student.Pesel = _Pesel.Text;
-                    student.Age = int.Parse(_Age.Text);
-                    student.Adress = _Adress.Text;
-                    student.NumerAlbumu = _NrAlbumu.Text;
-                    student.DateOfBirth = (DateTime)_Date.SelectedDate;
+                    student.NAME = _Name.Text;
+                    student.SURNAME = _SurName.Text;
+                    student.ADRESS_CITY = _City.Text;
+                    student.PESEL = _Pesel.Text;
+                    student.AGE = int.Parse(_Age.Text);
+                    student.ADRESS_STREET = _Adress.Text;
+                    student.NR_ALBUM = _NrAlbumu.Text;
+                    student.BIRTHDATE = (DateTime)_Date.SelectedDate;
                     student.SetId();
                     MainWindow.Students.Add(student);
+                    StudentsEntities entities = new StudentsEntities();
+                    entities.Student.Add(student);
+                    entities.SaveChangesAsync();
                     ClearFields();
                     
 
@@ -132,7 +135,7 @@ namespace Lista3
             }
             ImageFrame.Source = null;
             _Date.SelectedDate = null;
-            student = new StudentCheker();
+            student = new Student();
         }
 
 
