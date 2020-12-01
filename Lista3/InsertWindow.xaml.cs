@@ -105,6 +105,10 @@ namespace Lista3
                     student.NR_ALBUM = _NrAlbumu.Text;
                     student.BIRTHDATE = (DateTime)_Date.SelectedDate;
                     student.SetId();
+                    if (student.STUDENT_IMAGE==null)
+                    {
+                        student.AddImage(null);
+                    }
                     MainWindow.Students.Add(student);
                     StudentsEntities entities = new StudentsEntities();
                     entities.Student.Add(student);

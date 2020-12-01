@@ -34,11 +34,17 @@ namespace Lista3
            
             InitializeComponent();
             FrameworkElement.LanguageProperty.OverrideMetadata(typeof(FrameworkElement),new FrameworkPropertyMetadata(XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag)));
-
-
+            StudentsEntities entities = new StudentsEntities();
+            foreach (var item in entities.Student.ToList<Student>())
+            {
+                Students.Add(item);
+            }
+            
+            
             Data.ItemsSource = Students.ToList<Student>();
       
             Students.CollectionChanged += Students_CollectionChanged;
+            
           
             
             

@@ -29,57 +29,38 @@ namespace Lista3
         public string PESEL { get; set; }
         public string NR_ALBUM { get; set; }
 
-        public byte[] STUDENT_IMAGE
-        {
-
-            get
-            {
-
-
-
-
-                if (ByteImage==null)
-                {
-                   return ImageToByte((Bitmap)Resources.no_image);
-                }
-                else
-                {
-                    return ByteImage;
-                }
-                
-              
-            }
-
-            set
-            {
-                
-            }
-
-
-        }
+        public byte[] STUDENT_IMAGE { get; set; }
+      
 
 
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public BitmapImage ImgSource 
         {
-
             get 
             {
-
-                return BitmapToImageSource((Bitmap)((new ImageConverter()).ConvertFrom(STUDENT_IMAGE)));
-
+                    return BitmapToImageSource((Bitmap)((new ImageConverter()).ConvertFrom(STUDENT_IMAGE)));
             }
         }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public byte[] ByteImage;
+        
 
+
+       
 
 
         public void AddImage(Image img)
         {
             ImageConverter converter = new ImageConverter();
-            ByteImage = (byte[])converter.ConvertTo(img, typeof(byte[]));
+            if (img!=null)
+            {
+                STUDENT_IMAGE = (byte[])converter.ConvertTo(img, typeof(byte[]));
+            }
+            else
+            {
+                STUDENT_IMAGE = (byte[])converter.ConvertTo((Bitmap)Resources.no_image, typeof(byte[]));
+            }
+           
+           
         }
 
 
