@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Brushes = System.Windows.Media.Brushes;
 
 namespace Lista3
 {
@@ -23,6 +25,8 @@ namespace Lista3
 
         List<TextBox> textBoxes = new List<TextBox>();
         Student student = new Student();
+       
+
         public OutputWindow()
         {
             InitializeComponent();
@@ -33,7 +37,8 @@ namespace Lista3
             textBoxes.Add(_Pesel);
             textBoxes.Add(_NrAlbumu);
             textBoxes.Add(_Adress);
-            Student.Copy(MainWindow.Students[MainWindow.Index], student);
+            StudentsEntities entities = new StudentsEntities();
+            student = entities.Student.Where(item => item.id_stud == MainWindow.IndexID).FirstOrDefault();
             _DataGrid.DataContext = student;
             _Date.SelectedDateChanged += _Date_SelectedDateChanged;
             
@@ -69,37 +74,45 @@ namespace Lista3
 
         private void _Save_Click(object sender, RoutedEventArgs e)
         {
-            //try
-            //{
+            try
+            {
 
 
 
-            //    if (CheckText())
-            //    {
+                if (CheckText())
+                {
+
+                    StudentsEntities entities = new StudentsEntities();
+                    student = entities.Student.Where(item => item.id_stud == MainWindow.IndexID).FirstOrDefault();
 
 
-            //        MainWindow.Students[MainWindow.Index].Name = _Name.Text;
-            //        MainWindow.Students[MainWindow.Index].SurName = _SurName.Text;
-            //        MainWindow.Students[MainWindow.Index].HomeCity = _City.Text;
-            //        MainWindow.Students[MainWindow.Index].Pesel = _Pesel.Text;
-            //        MainWindow.Students[MainWindow.Index].Age = int.Parse(_Age.Text);
-            //        MainWindow.Students[MainWindow.Index].DateOfBirth = _Date.SelectedDate.Value;
-            //        MainWindow.Students[MainWindow.Index].Adress = _Adress.Text;
-            //        MainWindow.Students[MainWindow.Index].NumerAlbumu = _NrAlbumu.Text;
 
-            //        MessageBox.Show("Success!");
-            //        MainWindow myWindow = Application.Current.MainWindow as MainWindow;
-            //        myWindow.Refresh();
-            //    }
+
+
+                    student.NAME = _Name.Text;
+                    student.SURNAME = _SurName.Text;
+                    student.ADRESS_CITY = _City.Text;
+                    student.PESEL = _Pesel.Text;
+                    student.AGE = int.Parse(_Age.Text);
+                    student.BIRTHDATE = _Date.SelectedDate.Value;
+                    student.ADRESS_STREET = _Adress.Text;
+                    student.NR_ALBUM = _NrAlbumu.Text;
+                    entities.SaveChanges();
+
+
+                    MessageBox.Show("Success!");
+                    MainWindow myWindow = Application.Current.MainWindow as MainWindow;
+                    myWindow.Refresh();
+                }
               
 
 
-            //}
-            //catch (Exception)
-            //{
-            //    MessageBox.Show("Incorect Data");
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Incorect Data");
 
-            //}
+            }
         }
 
 
@@ -134,20 +147,29 @@ namespace Lista3
 
         private void _Delete_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.Students.Remove(MainWindow.Students[MainWindow.Index]);
+            StudentsEntities entities = new StudentsEntities();
+            student = entities.Student.Where(item => item.id_stud == MainWindow.IndexID).FirstOrDefault();
+            entities.Student.Remove(student);
+            entities.SaveChanges();
+
+
             MessageBox.Show("Success!");
             this.Close();
         }
 
         private void _ChangeImage_Click(object sender, RoutedEventArgs e)
         {
-            //OpenFileDialog saveFileDialog = new OpenFileDialog();
-            //if (saveFileDialog.ShowDialog() == true)
-            //{
-            //    MainWindow.Students[MainWindow.Index].PersonStringImage = StudentCheker.ImgToStr(saveFileDialog.FileName);
-            //}
+            StudentsEntities entities = new StudentsEntities();
+            student = entities.Student.Where(item => item.id_stud == MainWindow.IndexID).FirstOrDefault();
 
-            //_Image.Source = MainWindow.Students[MainWindow.Index].PersonImage;
+
+            OpenFileDialog saveFileDialog = new OpenFileDialog();
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                student.AddImage(new Bitmap(saveFileDialog.FileName));
+                _Image.Source = student.GetImage();
+                entities.SaveChanges();
+            }
 
 
         }

@@ -20,7 +20,7 @@
             </Grid.RowDefinitions>
             
             <Border  BorderBrush="Black" BorderThickness="2" Margin="4">
-                <Image x:Name="_Image" Source="{Binding PersonImage}"/>
+                <Image x:Name="_Image" Source="{Binding ImgSource}"/>
             </Border>
             <Button x:Name="_ChangeImage" Click="_ChangeImage_Click" Margin="4" Grid.Row="2" Content="Zamienić zdjęcie"/>
             <GridSplitter  HorizontalAlignment="Stretch" VerticalAlignment="Center" BorderThickness="3" BorderBrush="Gray" Grid.Row="1" Grid.ColumnSpan="3"  />
@@ -44,24 +44,24 @@
             <StackPanel Margin="4" Grid.Column="2">
                 <StackPanel Orientation="Vertical">
                     <TextBlock  Text="Imię"/>
-                    <TextBox x:Name="_Name" Text="{Binding Name,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self},Path=(Validation.Errors)[0].ErrorContent}"/>
+                    <TextBox x:Name="_Name" Text="{Binding NAME,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self},Path=(Validation.Errors)[0].ErrorContent}"/>
                     <TextBlock  Text="Nazwisko"/>
-                    <TextBox x:Name="_SurName" Text="{Binding SurName,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self},Path=(Validation.Errors)[0].ErrorContent}"/>
+                    <TextBox x:Name="_SurName" Text="{Binding SURNAME,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self},Path=(Validation.Errors)[0].ErrorContent}"/>
                     <TextBlock Text="Pesel"/>
-                    <TextBox x:Name="_Pesel" Text="{Binding Pesel,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self},Path=(Validation.Errors)[0].ErrorContent}"/>
+                    <TextBox x:Name="_Pesel" Text="{Binding PESEL,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self},Path=(Validation.Errors)[0].ErrorContent}"/>
                     <TextBlock  Text="Numer albumu"  />
-                    <TextBox x:Name="_NrAlbumu" Text="{Binding NumerAlbumu,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self},Path=(Validation.Errors)[0].ErrorContent}"/>
+                    <TextBox x:Name="_NrAlbumu" Text="{Binding NR_ALBUM,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self},Path=(Validation.Errors)[0].ErrorContent}"/>
                     <TextBlock   Text="Wiek"/>
                     <TextBox Background="LightGray" IsReadOnly="True" x:Name="_Age" Text="{Binding Age,Mode=TwoWay}"/>
                
                 <TextBlock Text="Data Urodzenia"/>
-                <DatePicker Name="_Date" Text="{Binding DateOfBirth}"  />
+                    <DatePicker Name="_Date" Text="{Binding BIRTHDATE}"  />
                 <TextBlock  Text="Miasto"/>
-                    <TextBox x:Name="_City" Text="{Binding HomeCity,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self},Path=(Validation.Errors)[0].ErrorContent}"/>
+                    <TextBox x:Name="_City" Text="{Binding ADRESS_CITY,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self},Path=(Validation.Errors)[0].ErrorContent}"/>
                     <TextBlock Text="Ulica"/>
-                    <TextBox x:Name="_Adress" Text="{Binding Adress,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self},Path=(Validation.Errors)[0].ErrorContent}"/>
+                    <TextBox x:Name="_Adress" Text="{Binding ADRESS_STREET,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self},Path=(Validation.Errors)[0].ErrorContent}"/>
                     <TextBlock  Text="ID"/>
-                <TextBox FontSize="10.5" Background="LightGray" IsReadOnly="True" Text="{Binding ID,Mode=TwoWay}"/>
+                    <TextBox FontSize="10.5" Background="LightGray" IsReadOnly="True" Text="{Binding id_stud,Mode=TwoWay}"/>
                
                 
                 </StackPanel>

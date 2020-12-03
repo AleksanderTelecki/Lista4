@@ -8,24 +8,6 @@
         Title="StudentsDataBase" Closing="Window_Closing" Height="450" Width="452" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
     <DockPanel>
         <Menu DockPanel.Dock="Top">
-            <MenuItem Header="_File">
-              
-                <MenuItem  Header="_Open" Click="MenuItem_Open">
-                    <MenuItem.Icon>
-                        <Image Source="./Resources/FolderOpen_7140_24.bmp"/>
-                    </MenuItem.Icon>
-                </MenuItem>
-                <MenuItem Header="_Save" Click="MenuItem_Save">
-                    <MenuItem.Icon>
-                        <Image Source="./Resources/Compile_191_32.bmp"/>
-                    </MenuItem.Icon>
-                </MenuItem>
-                <MenuItem Header="_New" Click="MenuItem_New">
-                    <MenuItem.Icon>
-                        <Image Source="./Resources/AddItemstoFolder_13217_32.bmp"/>
-                    </MenuItem.Icon>
-                </MenuItem>
-            </MenuItem>
             <MenuItem Header="_DataBase">
                 <MenuItem Header="Inser Data" Click="Add_Click">
                     <MenuItem.Icon>
