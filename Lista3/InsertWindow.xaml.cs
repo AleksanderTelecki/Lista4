@@ -23,8 +23,8 @@ namespace Lista3
     public partial class InsertWindow : Window
     {
 
-
-        Student student = new Student();
+        Byte[] SImage;
+        StudentCheker student = new StudentCheker();
         List<TextBox> textBoxes = new List<TextBox>();
         public InsertWindow()
         {
@@ -37,7 +37,7 @@ namespace Lista3
             textBoxes.Add(_Adress);
             textBoxes.Add(_NrAlbumu);
             _Date.SelectedDateChanged += _Date_SelectedDateChanged;
-            DataStack.DataContext = new Student();
+            DataStack.DataContext = new StudentCheker();
             _Date.ToolTip = "Pole nie może być puste";
             _Date.BorderBrush = Brushes.Red;
 
@@ -78,8 +78,11 @@ namespace Lista3
             OpenFileDialog saveFileDialog = new OpenFileDialog();
             if (saveFileDialog.ShowDialog() == true)
             {
-                student.PersonStringImage = Student.ImgToStr(saveFileDialog.FileName);
-                ImageFrame.Source = student.PersonImage;  
+                //student.PersonStringImage = StudentCheker.ImgToStr(saveFileDialog.FileName);
+                //ImageFrame.Source = student.PersonImage;
+
+                SImage = Student.ImageToByte(new Bitmap(saveFileDialog.FileName));
+                ImageFrame.Source = Student.BitmapToImageSource(new Bitmap(saveFileDialog.FileName));
             }
 
         }
@@ -95,17 +98,20 @@ namespace Lista3
                 if (CheckText())
                 {
 
-                  
-                    student.Name = _Name.Text;
-                    student.SurName = _SurName.Text;
-                    student.HomeCity = _City.Text;
-                    student.Pesel = _Pesel.Text;
-                    student.Age = int.Parse(_Age.Text);
-                    student.Adress = _Adress.Text;
-                    student.NumerAlbumu = _NrAlbumu.Text;
-                    student.DateOfBirth = (DateTime)_Date.SelectedDate;
-                    student.SetId();
-                    MainWindow.Students.Add(student);
+
+                    //student.Name = _Name.Text;
+                    //student.SurName = _SurName.Text;
+                    //student.HomeCity = _City.Text;
+                    //student.Pesel = _Pesel.Text;
+                    //student.Age = int.Parse(_Age.Text);
+                    //student.Adress = _Adress.Text;
+                    //student.NumerAlbumu = _NrAlbumu.Text;
+                    //student.DateOfBirth = (DateTime)_Date.SelectedDate;
+                    //student.SetId();
+                    //MainWindow.Students.Add(student);
+                    DataAccess da = new DataAccess();
+                    da.AddStudent(_SurName.Text, _Name.Text, (DateTime)_Date.SelectedDate, int.Parse(_Age.Text), _City.Text, _Adress.Text, _Pesel.Text, _NrAlbumu.Text, SImage);
+
                     ClearFields();
                     
 
@@ -132,7 +138,7 @@ namespace Lista3
             }
             ImageFrame.Source = null;
             _Date.SelectedDate = null;
-            student = new Student();
+            student = new StudentCheker();
         }
 
 

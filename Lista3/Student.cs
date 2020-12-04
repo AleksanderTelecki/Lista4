@@ -1,50 +1,57 @@
-﻿using System;
+﻿using Lista3.Properties;
+using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Drawing.Imaging;
-using System.Windows.Controls;
-using System.Windows.Media.Imaging;
-using System.Xml.Serialization;
-using System.Drawing;
-using Lista3.Properties;
 using System.ComponentModel;
+using System.Drawing;
+using System.IO;
 using System.Text.RegularExpressions;
-using System.Collections.ObjectModel;
+using System.Windows.Media.Imaging;
+
 
 namespace Lista3
 {
 
-    [Serializable]
-   public class Student:IDataErrorInfo
+
+    public partial class Student : IDataErrorInfo
     {
+        public string id_stud { get; set; }
+        public string SURNAME { get; set; }
+        public string NAME { get; set; }
+        public System.DateTime BIRTHDATE { get; set; }
+        public int AGE { get; set; }
+        public string ADRESS_CITY { get; set; }
+        public string ADRESS_STREET { get; set; }
+        public string PESEL { get; set; }
+        public string NR_ALBUM { get; set; }
 
-        public string Name { get; set; }
-        public string SurName { get; set; }
-        public string Pesel { get; set; }
-        public DateTime DateOfBirth { get; set; }
-        public int Age { get; set; }
-        public string ID { get; set; }
-        public string HomeCity { get; set; }
-        public string Adress { get; set; }
-        public string NumerAlbumu { get; set; }
+        public byte[] STUDENT_IMAGE { get; set; }
 
-        [XmlIgnore]
+
+
+
+        public BitmapImage ImgSource
+        {
+            get
+            {
+                return BitmapToImageSource((Bitmap)((new ImageConverter()).ConvertFrom(STUDENT_IMAGE)));
+            }
+        }
+
+
+
         public string Error
         {
             get
             {
-               
+
                 return null;
             }
         }
 
-        [XmlIgnore]
+
         public Dictionary<string, string> ErrorsColl { get; set; } = new Dictionary<string, string>();
 
-        [XmlIgnore]
+
         public string this[string name]
         {
 
@@ -56,25 +63,25 @@ namespace Lista3
                 switch (name)
                 {
 
-                    case "Name":
+                    case "NAME":
                         result = ValidateName();
                         break;
-                    case "NumerAlbumu":
+                    case "NR_ALBUM":
                         result = ValidateNrAlbum();
                         break;
-                    case "SurName":
+                    case "SURNAME":
                         result = ValidateSurName();
                         break;
-                    case "HomeCity":
+                    case "ADRESS_CITY":
                         result = ValidateCityName();
                         break;
-                    case "Adress":
+                    case "ADRESS_STREET":
                         result = ValidateAdress();
                         break;
-                    case "Pesel":
+                    case "PESEL":
                         result = ValidatePesel();
                         break;
-                   
+
 
 
 
@@ -85,13 +92,13 @@ namespace Lista3
                 {
                     ErrorsColl[name] = result;
                 }
-                else if(result!=null)
+                else if (result != null)
                 {
                     ErrorsColl.Add(name, result);
                 }
 
-               
-                
+
+
                 return result;
             }
 
@@ -99,12 +106,12 @@ namespace Lista3
 
         private string ValidateCityName()
         {
-            if (String.IsNullOrEmpty(HomeCity))
+            if (String.IsNullOrEmpty(ADRESS_CITY))
             {
                 return "Pole nie może być puste";
             }
 
-            if (Regex.IsMatch(HomeCity, @"\d"))
+            if (Regex.IsMatch(ADRESS_CITY, @"\d"))
             {
                 return "Nie może zawierać symbole numeryczne";
             }
@@ -112,18 +119,18 @@ namespace Lista3
             return null;
         }
 
-       
+
 
         private string ValidatePesel()
         {
 
-            if (String.IsNullOrEmpty(Pesel))
+            if (String.IsNullOrEmpty(PESEL))
             {
                 return "Pole nie może być puste";
             }
 
 
-            if ((double.TryParse(Pesel, out double redf)) != true)
+            if ((double.TryParse(PESEL, out double redf)) != true)
             {
 
                 return "Pole musi zawierać wyłacznie cyfry";
@@ -131,17 +138,17 @@ namespace Lista3
             }
 
 
-            if (Pesel.Length < 11)
+            if (PESEL.Length < 11)
             {
                 return "Musi zawierać 11 cyfr";
             }
 
-            if (Pesel.Length > 11)
+            if (PESEL.Length > 11)
             {
                 return "Musi zawierać 11 cyfr";
             }
 
-           
+
 
 
 
@@ -152,32 +159,32 @@ namespace Lista3
         {
 
 
-            if (String.IsNullOrEmpty(NumerAlbumu))
+            if (String.IsNullOrEmpty(NR_ALBUM))
             {
                 return "Pole nie może być puste";
             }
 
 
-            if (!(int.TryParse(NumerAlbumu, out int res)))
+            if (!(int.TryParse(NR_ALBUM, out int res)))
             {
 
                 return "Pole musi zawierać wyłacznie cyfry";
 
             }
 
-            if (NumerAlbumu.Length<6)
+            if (NR_ALBUM.Length < 6)
             {
                 return "Musi zawierać 6 cyfr";
             }
 
-            if (NumerAlbumu.Length>6)
+            if (NR_ALBUM.Length > 6)
             {
                 return "Musi zawierać 6 cyfr";
             }
 
-           
 
-          
+
+
 
             return null;
 
@@ -188,30 +195,30 @@ namespace Lista3
 
 
 
-            if (String.IsNullOrEmpty(Name))
+            if (String.IsNullOrEmpty(NAME))
             {
                 return "Pole nie może być puste";
             }
 
 
-            if (!Regex.IsMatch(Name, "^[a-zA-Z]+$"))
+            if (!Regex.IsMatch(NAME, "^[a-zA-Z]+$"))
             {
 
                 return "Pole nie może zawierać inne symbole oprócz liter";
             }
 
             return null;
-            
+
         }
 
         private string ValidateSurName()
         {
-            if (String.IsNullOrEmpty(SurName))
+            if (String.IsNullOrEmpty(SURNAME))
             {
                 return "Pole nie może być puste";
             }
 
-            if (!Regex.IsMatch(SurName, "^[a-zA-Z]+$"))
+            if (!Regex.IsMatch(SURNAME, "^[a-zA-Z]+$"))
             {
 
                 return "Pole nie może zawierać inne symbole oprócz liter";
@@ -223,12 +230,12 @@ namespace Lista3
 
         private string ValidateAdress()
         {
-            if (String.IsNullOrEmpty(Adress))
+            if (String.IsNullOrEmpty(ADRESS_STREET))
             {
                 return "Pole nie może być puste";
             }
 
-            if (Adress.Length>30)
+            if (ADRESS_STREET.Length > 30)
             {
                 return "Pole nie może zawierać więcej niż 30 symboli";
             }
@@ -239,91 +246,53 @@ namespace Lista3
 
         }
 
-        public Student(string name, string surname, string pesel,string homecity,DateTime date,int age,string adress,string nralb)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        public void AddImage(Image img)
         {
-            Name = name;
-            SurName = surname;
-            Pesel = pesel;
-            ID = Guid.NewGuid().ToString();
-            HomeCity = homecity;
-            DateOfBirth = date;
-            Age = age;
-            Adress = adress;
-            NumerAlbumu = nralb;
-
-
-        }
-
-        [XmlIgnore]
-        public BitmapImage PersonImage
-        {
-
-
-            get
+            ImageConverter converter = new ImageConverter();
+            if (img != null)
             {
-                if (String.IsNullOrEmpty(PersonStringImage))
-                {
-
-                    return BitmapToImageSource((Bitmap)Resources.no_image);
-                }
-
-                return BitmapToImageSource((Bitmap)StrToImg(PersonStringImage));
+                STUDENT_IMAGE = (byte[])converter.ConvertTo(img, typeof(byte[]));
             }
-           
+            else
+            {
+                STUDENT_IMAGE = (byte[])converter.ConvertTo((Bitmap)Resources.no_image, typeof(byte[]));
+            }
+
+
         }
-       
-        public string PersonStringImage { get; set; }
 
 
-    
 
-        public Student()
+
+        public static byte[] ImageToByte(Image img)
         {
-
+            ImageConverter converter = new ImageConverter();
+            return (byte[])converter.ConvertTo(img, typeof(byte[]));
         }
 
-        public void SetId()
+
+        public BitmapImage GetImage()
         {
-            ID = Guid.NewGuid().ToString();
+            return BitmapToImageSource((Bitmap)((new ImageConverter()).ConvertFrom(STUDENT_IMAGE)));
         }
 
-
-        public static string ImgToStr(string filename)
-        {
-            MemoryStream Memostr = new MemoryStream();
-            System.Drawing.Image Img = System.Drawing.Image.FromFile(filename);
-            Img.Save(Memostr, Img.RawFormat);
-            byte[] arrayimg = Memostr.ToArray();
-            return Convert.ToBase64String(arrayimg);
-        }
-
-        public static System.Drawing.Image StrToImg(string StrImg)
-        {
-            byte[] arrayimg = Convert.FromBase64String(StrImg);
-            System.Drawing.Image imageStr = System.Drawing.Image.FromStream(new MemoryStream(arrayimg));
-            return imageStr;
-        }
-
-
-        public static void Copy(Student copyfrom, Student copyto)
-        {
-            copyto.Adress = copyfrom.Adress;
-            copyto.Name = copyfrom.Name;
-            copyto.SurName = copyfrom.SurName;
-            copyto.Pesel = copyfrom.Pesel;
-            copyto.ID = copyfrom.ID;
-            copyto.HomeCity = copyfrom.HomeCity;
-            copyto.NumerAlbumu = copyfrom.NumerAlbumu;
-            copyto.Age = copyfrom.Age;
-            copyto.DateOfBirth = copyfrom.DateOfBirth;
-            copyto.PersonStringImage = copyfrom.PersonStringImage;
-            
-  
-
-        }
-
-
-        public BitmapImage BitmapToImageSource(Bitmap bitmap)
+        public static BitmapImage BitmapToImageSource(Bitmap bitmap)
         {
             using (MemoryStream memory = new MemoryStream())
             {
@@ -339,5 +308,29 @@ namespace Lista3
             }
         }
 
+        public void SetId()
+        {
+            id_stud = Guid.NewGuid().ToString();
+        }
+
+        public static void Copy(Student copyfrom, Student copyto)
+        {
+            copyto.ADRESS_STREET = copyfrom.ADRESS_STREET;
+            copyto.NAME = copyfrom.NAME;
+            copyto.SURNAME = copyfrom.SURNAME;
+            copyto.PESEL = copyfrom.PESEL;
+            copyto.id_stud = copyfrom.id_stud;
+            copyto.ADRESS_CITY = copyfrom.ADRESS_CITY;
+            copyto.NR_ALBUM = copyfrom.NR_ALBUM;
+            copyto.AGE = copyfrom.AGE;
+            copyto.BIRTHDATE = copyfrom.BIRTHDATE;
+            copyto.STUDENT_IMAGE = copyfrom.STUDENT_IMAGE;
+
+
+
+        }
+
+
     }
 }
+

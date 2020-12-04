@@ -22,7 +22,7 @@ namespace Lista3
     {
 
         List<TextBox> textBoxes = new List<TextBox>();
-        Student student = new Student();
+        StudentCheker student = new StudentCheker();
         public OutputWindow()
         {
             InitializeComponent();
@@ -33,7 +33,7 @@ namespace Lista3
             textBoxes.Add(_Pesel);
             textBoxes.Add(_NrAlbumu);
             textBoxes.Add(_Adress);
-            Student.Copy(MainWindow.Students[MainWindow.Index], student);
+            StudentCheker.Copy(MainWindow.Students[MainWindow.Index], student);
             _DataGrid.DataContext = student;
             _Date.SelectedDateChanged += _Date_SelectedDateChanged;
             
@@ -144,7 +144,7 @@ namespace Lista3
             OpenFileDialog saveFileDialog = new OpenFileDialog();
             if (saveFileDialog.ShowDialog() == true)
             {
-                MainWindow.Students[MainWindow.Index].PersonStringImage = Student.ImgToStr(saveFileDialog.FileName);
+                MainWindow.Students[MainWindow.Index].PersonStringImage = StudentCheker.ImgToStr(saveFileDialog.FileName);
             }
 
             _Image.Source = MainWindow.Students[MainWindow.Index].PersonImage;

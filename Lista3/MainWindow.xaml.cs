@@ -28,7 +28,7 @@ namespace Lista3
     public partial class MainWindow : Window
     {
 
-        public static ObservableCollection<Student> Students = new ObservableCollection<Student>();
+        public static ObservableCollection<StudentCheker> Students = new ObservableCollection<StudentCheker>();
         public static int Index;
         public MainWindow()
         {
@@ -64,7 +64,7 @@ namespace Lista3
             {
                 string FilePath = saveFileDialog.FileName;
 
-                XmlSerializer serializer = new XmlSerializer(typeof(ObservableCollection<Student>));
+                XmlSerializer serializer = new XmlSerializer(typeof(ObservableCollection<StudentCheker>));
                 using (TextWriter tw = new StreamWriter($"{FilePath}"))
                 {
                     serializer.Serialize(tw, Students);
@@ -86,13 +86,13 @@ namespace Lista3
             if (openFileDialog.ShowDialog() == true)
             {
                 string FilePath = openFileDialog.FileName;
-                XmlSerializer xmldeserializer = new XmlSerializer(typeof(ObservableCollection<Student>));
+                XmlSerializer xmldeserializer = new XmlSerializer(typeof(ObservableCollection<StudentCheker>));
                 using (TextReader reader = new StreamReader(FilePath))
                 {
 
                     
                     object FileInfo = xmldeserializer.Deserialize(reader);
-                    Students = (ObservableCollection<Student>)FileInfo;
+                    Students = (ObservableCollection<StudentCheker>)FileInfo;
 
                 }
 
@@ -149,8 +149,8 @@ namespace Lista3
 
         private void Data_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            var x = (Student)Data.Items[Data.SelectedIndex];
-            Index = Students.ToList<Student>().FindIndex(item => item.ID == x.ID);
+            var x = (StudentCheker)Data.Items[Data.SelectedIndex];
+            Index = Students.ToList<StudentCheker>().FindIndex(item => item.ID == x.ID);
             OutputWindow outputWindow = new OutputWindow();
             outputWindow.Show();
             outputWindow.Closing += OutputWindow_Closing;
@@ -180,7 +180,7 @@ namespace Lista3
             {
                 string FilePath = saveFileDialog.FileName;
 
-                XmlSerializer serializer = new XmlSerializer(typeof(List<Student>));
+                XmlSerializer serializer = new XmlSerializer(typeof(List<StudentCheker>));
                 using (TextWriter tw = new StreamWriter($"{FilePath}"))
                 {
                     serializer.Serialize(tw, Students);
