@@ -110,6 +110,8 @@ namespace Lista3
                     //student.SetId();
                     //MainWindow.Students.Add(student);
                     DataAccess da = new DataAccess();
+
+                    //<<Check for null image>>//
                     da.AddStudent(_SurName.Text, _Name.Text, (DateTime)_Date.SelectedDate, int.Parse(_Age.Text), _City.Text, _Adress.Text, _Pesel.Text, _NrAlbumu.Text, SImage);
 
                     ClearFields();

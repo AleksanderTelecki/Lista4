@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Brushes = System.Windows.Media.Brushes;
 
 namespace Lista3
 {
@@ -20,9 +22,9 @@ namespace Lista3
     /// </summary>
     public partial class OutputWindow : Window
     {
-
+        Byte[] SImage;
         List<TextBox> textBoxes = new List<TextBox>();
-        StudentCheker student = new StudentCheker();
+        Student student = new Student();
         public OutputWindow()
         {
             InitializeComponent();
@@ -33,7 +35,7 @@ namespace Lista3
             textBoxes.Add(_Pesel);
             textBoxes.Add(_NrAlbumu);
             textBoxes.Add(_Adress);
-            StudentCheker.Copy(MainWindow.Students[MainWindow.Index], student);
+            Student.Copy(MainWindow.Students[MainWindow.Index], student);
             _DataGrid.DataContext = student;
             _Date.SelectedDateChanged += _Date_SelectedDateChanged;
             
@@ -78,15 +80,24 @@ namespace Lista3
                 {
 
 
-                    MainWindow.Students[MainWindow.Index].Name = _Name.Text;
-                    MainWindow.Students[MainWindow.Index].SurName = _SurName.Text;
-                    MainWindow.Students[MainWindow.Index].HomeCity = _City.Text;
-                    MainWindow.Students[MainWindow.Index].Pesel = _Pesel.Text;
-                    MainWindow.Students[MainWindow.Index].Age = int.Parse(_Age.Text);
-                    MainWindow.Students[MainWindow.Index].DateOfBirth = _Date.SelectedDate.Value;
-                    MainWindow.Students[MainWindow.Index].Adress = _Adress.Text;
-                    MainWindow.Students[MainWindow.Index].NumerAlbumu = _NrAlbumu.Text;
+                    //MainWindow.Students[MainWindow.Index].Name = _Name.Text;
+                    //MainWindow.Students[MainWindow.Index].SurName = _SurName.Text;
+                    //MainWindow.Students[MainWindow.Index].HomeCity = _City.Text;
+                    //MainWindow.Students[MainWindow.Index].Pesel = _Pesel.Text;
+                    //MainWindow.Students[MainWindow.Index].Age = int.Parse(_Age.Text);
+                    //MainWindow.Students[MainWindow.Index].DateOfBirth = _Date.SelectedDate.Value;
+                    //MainWindow.Students[MainWindow.Index].Adress = _Adress.Text;
+                    //MainWindow.Students[MainWindow.Index].NumerAlbumu = _NrAlbumu.Text;
 
+
+                    DataAccess da = new DataAccess();
+
+                    if (SImage==null)
+                    {
+                        SImage = student.STUDENT_IMAGE;
+                    }
+                    //<<Check for null image>>//
+                    da.UpdateStudent(student.id_stud,_SurName.Text, _Name.Text, (DateTime)_Date.SelectedDate, int.Parse(_Age.Text), _City.Text, _Adress.Text, _Pesel.Text, _NrAlbumu.Text, SImage);
                     MessageBox.Show("Success!");
                     MainWindow myWindow = Application.Current.MainWindow as MainWindow;
                     myWindow.Refresh();
@@ -134,21 +145,30 @@ namespace Lista3
 
         private void _Delete_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.Students.Remove(MainWindow.Students[MainWindow.Index]);
+            DataAccess da = new DataAccess();
+            da.DeleteStudent(student.id_stud);
             MessageBox.Show("Success!");
             this.Close();
         }
 
         private void _ChangeImage_Click(object sender, RoutedEventArgs e)
         {
+            //OpenFileDialog saveFileDialog = new OpenFileDialog();
+            //if (saveFileDialog.ShowDialog() == true)
+            //{
+            //    MainWindow.Students[MainWindow.Index].PersonStringImage = StudentCheker.ImgToStr(saveFileDialog.FileName);
+            //}
+
+            //_Image.Source = MainWindow.Students[MainWindow.Index].PersonImage;
+
+
             OpenFileDialog saveFileDialog = new OpenFileDialog();
             if (saveFileDialog.ShowDialog() == true)
             {
-                MainWindow.Students[MainWindow.Index].PersonStringImage = StudentCheker.ImgToStr(saveFileDialog.FileName);
+
+                SImage = Student.ImageToByte(new Bitmap(saveFileDialog.FileName));
+                _Image.Source = Student.BitmapToImageSource(new Bitmap(saveFileDialog.FileName));
             }
-
-            _Image.Source = MainWindow.Students[MainWindow.Index].PersonImage;
-
 
         }
     }
