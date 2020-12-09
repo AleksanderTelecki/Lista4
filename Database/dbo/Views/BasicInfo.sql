@@ -1,0 +1,3 @@
+﻿CREATE VIEW [dbo].[BasicInfo]
+	AS SELECT SURNAME,NAME,NR_ALBUM
+	FROM Student

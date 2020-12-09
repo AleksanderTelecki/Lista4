@@ -1,0 +1,19 @@
+﻿CREATE PROCEDURE [dbo].[InsertStudent]
+@id_stud varchar(36),
+@SURNAME varchar(20),
+@NAME varchar(20),
+@BIRTHDATE Date,
+@AGE int,
+@ADRESS_CITY varchar(20),
+@ADRESS_STREET varchar(20),
+@PESEL varchar(11),
+@NR_ALBUM varchar(6),
+@STUDENT_IMAGE IMAGE
+AS
+BEGIN
+	SET NOCOUNT ON;
+
+    insert into dbo.Student(id_stud, SURNAME, NAME, BIRTHDATE,AGE,ADRESS_CITY,ADRESS_STREET,PESEL,NR_ALBUM,STUDENT_IMAGE)
+	values (@id_stud, @SURNAME, @NAME, @BIRTHDATE,@AGE,@ADRESS_CITY,@ADRESS_STREET,@PESEL,@NR_ALBUM,@STUDENT_IMAGE);
+
+END
